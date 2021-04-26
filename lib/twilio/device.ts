@@ -788,9 +788,10 @@ class Device extends EventEmitter {
     }
 
     this.audio = new (this.options.AudioHelper || AudioHelper)
-        (this._updateSinkIds, this._updateInputStream, getUserMedia, {
+        (this._updateSinkIds, this._updateInputStream, this.options.getUserMedia || getUserMedia, {
       audioContext: Device.audioContext,
       enabledSounds: this._enabledSounds,
+      enumerateDevices: this.options.enumerateDevices,
     }) as AudioHelper;
 
     this.audio.on('deviceChange', (lostActiveDevices: MediaDeviceInfo[]) => {
@@ -981,7 +982,7 @@ class Device extends EventEmitter {
 
     const config: Connection.Config = {
       audioHelper: this.audio,
-      getUserMedia,
+      getUserMedia: this.options.getUserMedia || getUserMedia,
       isUnifiedPlanDefault: Device._isUnifiedPlanDefault,
       pstream: this.stream,
       publisher: this._publisher,
@@ -992,6 +993,7 @@ class Device extends EventEmitter {
       MediaStream: this.options.MediaStream
         || this.options.mediaStreamFactory
         || rtc.PeerConnection,
+      RTCPeerConnection: this.options.PeerConnection,
       audioConstraints: this.options.audioConstraints,
       beforeAccept: (conn: Connection) => {
         if (!this._activeConnection || this._activeConnection === conn) {
@@ -1621,6 +1623,12 @@ namespace Device {
     enableRingingState?: boolean;
 
     /**
+     * An override for the enumerateDevices function. Must match the enumerateDevices API exactly. Primary
+     * use-case is supporting Citrix HDX SDK.
+     */
+    enumerateDevices?: Function;
+
+    /**
      * Whether or not to override the local DTMF sounds with fake dialtones. This won't affect
      * the DTMF tone sent over the connection, but will prevent double-send issues caused by
      * using real DTMF tones for user interface. In 2.0, this will be enabled by default.
@@ -1634,6 +1642,12 @@ namespace Device {
     forceAggressiveIceNomination?: boolean;
 
     /**
+     * An override for the getUserMedia function. Must match the getUserMedia API exactly. Primary
+     * use-case is supporting Citrix HDX SDK.
+     */
+    getUserMedia?: Function;
+
+    /**
      * The maximum average audio bitrate to use, in bits per second (bps) based on
      * [RFC-7587 7.1](https://tools.ietf.org/html/rfc7587#section-7.1). By default, the setting
      * is not used. If you specify 0, then the setting is not used. Any positive integer is allowed,
@@ -1642,6 +1656,12 @@ namespace Device {
      * [RFC-7587 3.1.1](https://tools.ietf.org/html/rfc7587#section-3.1.1).
      */
     maxAverageBitrate?: number;
+
+    /**
+     * An override for the RTCPeerConnection used. Must match the RTCPeerConnection API exactly or this will cause
+     * issues. Primary use-case is supporting Citrix HDX SDK which uses a custom PeerConnection, CitrixPeerConnection.
+     */
+    PeerConnection?: any;
 
     /**
      * The region code of the region to connect to.

@@ -324,6 +324,7 @@ class Connection extends EventEmitter {
 
     this.mediaStream = new (this.options.MediaStream || this.options.mediaStreamFactory)
       (config.audioHelper, config.pstream, config.getUserMedia, {
+        RTCPeerConnection: this.options.RTCPeerConnection,
         codecPreferences: this.options.codecPreferences,
         dscp: this.options.dscp,
         enableIceRestart: this.options.enableIceRestart,
@@ -1753,6 +1754,11 @@ namespace Connection {
      * The format of this object depends on browser.
      */
     rtcConstraints?: MediaStreamConstraints;
+
+    /**
+     * Overrides RTCPeerConnection. Originally passed in Device options.
+     */
+    RTCPeerConnection?: any;
 
     /**
      * The region passed to {@link Device} on setup.

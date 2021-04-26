@@ -91,6 +91,11 @@ class AudioHelper extends EventEmitter {
   private _audioContext?: AudioContext;
 
   /**
+   * The `enumerateDevices()` function to use.
+   */
+  private _enumerateDevices: Function | null;
+
+  /**
    * The `getUserMedia()` function to use.
    */
   private _getUserMedia: (constraints: MediaStreamConstraints) => Promise<MediaStream>;
@@ -165,9 +170,12 @@ class AudioHelper extends EventEmitter {
     this._getUserMedia = getUserMedia;
     this._mediaDevices = options.mediaDevices || defaultMediaDevices;
     this._onActiveInputChanged = onActiveInputChanged;
+    this._enumerateDevices = typeof options.enumerateDevices === 'function'
+      ? options.enumerateDevices
+      : this._mediaDevices && this._mediaDevices.enumerateDevices;
 
     const isAudioContextSupported: boolean = !!(options.AudioContext || options.audioContext);
-    const isEnumerationSupported: boolean = !!(this._mediaDevices && this._mediaDevices.enumerateDevices);
+    const isEnumerationSupported: boolean = !!(this._enumerateDevices);
     const isSetSinkSupported: boolean = typeof options.setSinkId === 'function';
     this.isOutputSelectionSupported = isEnumerationSupported && isSetSinkSupported;
     this.isVolumeSupported = isAudioContextSupported;
@@ -499,11 +507,11 @@ class AudioHelper extends EventEmitter {
    * Update the available input and output devices
    */
   private _updateAvailableDevices = (): Promise<void> => {
-    if (!this._mediaDevices) {
+    if (!this._enumerateDevices) {
       return Promise.reject('Enumeration not supported');
     }
 
-    return this._mediaDevices.enumerateDevices().then((devices: MediaDeviceInfo[]) => {
+    return this._enumerateDevices().then((devices: MediaDeviceInfo[]) => {
       this._updateDevices(devices.filter((d: MediaDeviceInfo) => d.kind === 'audiooutput'),
         this.availableOutputDevices,
         this._removeLostOutput);
@@ -675,6 +683,11 @@ namespace AudioHelper {
      * TODO: Remove / refactor in 2.0. (CLIENT-5302)
      */
     enabledSounds?: Record<Device.ToggleableSound, boolean>;
+
+    /**
+     * Override for enumerateDevices.
+     */
+    enumerateDevices?: Function;
 
     /**
      * A custom MediaDevices instance to use.

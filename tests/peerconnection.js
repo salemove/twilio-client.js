@@ -2244,7 +2244,7 @@ describe('PeerConnection', () => {
 
     it('Should set callback on version pc onaddstream when create and addstream do not throw error', () => {
       assert.deepStrictEqual(toTest(), new rtcpcFactory());
-      assert(versionCreate.calledWithExactly(CONSTRAINTS, ICE_SERVERS));
+      assert(versionCreate.calledWith(CONSTRAINTS, ICE_SERVERS));
       assert(versionPc.addStream.calledWithExactly(STREAM));
       assert.equal(typeof versionPc.onaddstream, 'function');
     });
@@ -2252,7 +2252,7 @@ describe('PeerConnection', () => {
     it('Should not create onaddstream callback function when version create throws error', () => {
       versionCreate.throws(ERROR);
       assert.throws(toTest, Error, MESSAGE);
-      assert(versionCreate.calledWithExactly(CONSTRAINTS, ICE_SERVERS));
+      assert(versionCreate.calledWith(CONSTRAINTS, ICE_SERVERS));
       assert.equal(versionPc.addStream.called, false);
       assert.equal(typeof versionPc.onaddstream, 'undefined');
     });
@@ -2260,7 +2260,7 @@ describe('PeerConnection', () => {
     it('Should not create onaddstream callback function when pc addstream throws error', () => {
       versionPc.addStream.throws(ERROR);
       assert.throws(toTest, Error, MESSAGE);
-      assert(versionCreate.calledWithExactly(CONSTRAINTS, ICE_SERVERS));
+      assert(versionCreate.calledWith(CONSTRAINTS, ICE_SERVERS));
       assert(versionPc.addStream.calledWithExactly(STREAM));
       assert.equal(typeof versionPc.onaddstream, 'undefined');
     });
