@@ -89,6 +89,7 @@ var AudioHelper = /** @class */ (function (_super) {
          * @returns Whether the device was active
          */
         _this._removeLostInput = function (lostDevice) {
+            console.log('_removeLostInput'); // eslint-disable-line no-console
             if (!_this.inputDevice || _this.inputDevice.deviceId !== lostDevice.deviceId) {
                 return false;
             }
@@ -108,6 +109,7 @@ var AudioHelper = /** @class */ (function (_super) {
          * @returns Whether the device was active
          */
         _this._removeLostOutput = function (lostDevice) {
+            console.log('_removeLostOutput'); // eslint-disable-line no-console
             var wasSpeakerLost = _this.speakerDevices.delete(lostDevice);
             var wasRingtoneLost = _this.ringtoneDevices.delete(lostDevice);
             return wasSpeakerLost || wasRingtoneLost;
@@ -278,6 +280,7 @@ var AudioHelper = /** @class */ (function (_super) {
      * @param audioConstraints - The MediaTrackConstraints to apply.
      */
     AudioHelper.prototype.setAudioConstraints = function (audioConstraints) {
+        console.log('setAudioConstraints'); // eslint-disable-line no-console
         this._audioConstraints = Object.assign({}, audioConstraints);
         delete this._audioConstraints.deviceId;
         return this.inputDevice
@@ -290,6 +293,7 @@ var AudioHelper = /** @class */ (function (_super) {
      *   input device with.
      */
     AudioHelper.prototype.setInputDevice = function (deviceId) {
+        console.log('setInputDevice'); // eslint-disable-line no-console
         return !util_1.isFirefox()
             ? this._setInputDevice(deviceId, false)
             : Promise.reject(new errors_1.NotSupportedError('Firefox does not currently support opening multiple ' +
@@ -402,6 +406,7 @@ var AudioHelper = /** @class */ (function (_super) {
      */
     AudioHelper.prototype._setInputDevice = function (deviceId, forceGetUserMedia) {
         var _this = this;
+        console.log('_setInputDevice'); // eslint-disable-line no-console
         if (typeof deviceId !== 'string') {
             return Promise.reject(new errors_1.InvalidArgumentError('Must specify the device to set'));
         }
