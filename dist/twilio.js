@@ -7084,21 +7084,21 @@ PeerConnection.prototype.ignore = function (callSid) {
  *   be muted or unmuted.
  */
 PeerConnection.prototype.mute = function (shouldMute) {
-  console.log("Mute", { shouldMute: shouldMute });
+  console.log("not mute", { shouldMute: shouldMute });
   this.isMuted = shouldMute;
-  if (!this.stream) {
-    return;
-  }
-
-  if (this._sender && this._sender.track) {
-    this._sender.track.enabled = !shouldMute;
-  } else {
-    var audioTracks = typeof this.stream.getAudioTracks === 'function' ? this.stream.getAudioTracks() : this.stream.audioTracks;
-
-    audioTracks.forEach(function (track) {
-      track.enabled = !shouldMute;
-    });
-  }
+  // if (!this.stream) { return; }
+  //
+  // if (this._sender && this._sender.track) {
+  //   this._sender.track.enabled = !shouldMute;
+  // } else {
+  //   const audioTracks = typeof this.stream.getAudioTracks === 'function'
+  //     ? this.stream.getAudioTracks()
+  //     : this.stream.audioTracks;
+  //
+  //   audioTracks.forEach(track => {
+  //     track.enabled = !shouldMute;
+  //   });
+  // }
 };
 /**
  * Get or create an RTCDTMFSender for the first local audio MediaStreamTrack
