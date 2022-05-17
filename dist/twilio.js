@@ -6408,6 +6408,7 @@ PeerConnection.prototype._setInputTracksForUnifiedPlan = function (shouldClone, 
       this._sender = this.version.pc.getSenders()[0];
     }
 
+    console.log("REPLACE TRACK");
     return this._sender.replaceTrack(newStream.getAudioTracks()[0]).then(function () {
       // If the call was started with gUM, and we are now replacing that track with an
       // external stream's tracks, we should stop the old managed track.
