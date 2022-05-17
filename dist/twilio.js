@@ -379,6 +379,7 @@ var AudioHelper = /** @class */ (function (_super) {
          * @returns Whether the device was active
          */
         _this._removeLostInput = function (lostDevice) {
+            console.log('_removeLostInput'); // eslint-disable-line no-console
             if (!_this.inputDevice || _this.inputDevice.deviceId !== lostDevice.deviceId) {
                 return false;
             }
@@ -398,6 +399,7 @@ var AudioHelper = /** @class */ (function (_super) {
          * @returns Whether the device was active
          */
         _this._removeLostOutput = function (lostDevice) {
+            console.log('_removeLostOutput'); // eslint-disable-line no-console
             var wasSpeakerLost = _this.speakerDevices.delete(lostDevice);
             var wasRingtoneLost = _this.ringtoneDevices.delete(lostDevice);
             return wasSpeakerLost || wasRingtoneLost;
@@ -568,6 +570,7 @@ var AudioHelper = /** @class */ (function (_super) {
      * @param audioConstraints - The MediaTrackConstraints to apply.
      */
     AudioHelper.prototype.setAudioConstraints = function (audioConstraints) {
+        console.log('setAudioConstraints'); // eslint-disable-line no-console
         this._audioConstraints = Object.assign({}, audioConstraints);
         delete this._audioConstraints.deviceId;
         return this.inputDevice
@@ -580,6 +583,7 @@ var AudioHelper = /** @class */ (function (_super) {
      *   input device with.
      */
     AudioHelper.prototype.setInputDevice = function (deviceId) {
+        console.log('setInputDevice'); // eslint-disable-line no-console
         return !util_1.isFirefox()
             ? this._setInputDevice(deviceId, false)
             : Promise.reject(new errors_1.NotSupportedError('Firefox does not currently support opening multiple ' +
@@ -692,6 +696,7 @@ var AudioHelper = /** @class */ (function (_super) {
      */
     AudioHelper.prototype._setInputDevice = function (deviceId, forceGetUserMedia) {
         var _this = this;
+        console.log('_setInputDevice'); // eslint-disable-line no-console
         if (typeof deviceId !== 'string') {
             return Promise.reject(new errors_1.InvalidArgumentError('Must specify the device to set'));
         }
@@ -6162,6 +6167,7 @@ PeerConnection.prototype.uri = function () {
  * @param {MediaStreamConstraints} constraints
  */
 PeerConnection.prototype.openWithConstraints = function (constraints) {
+  console.log('openWithConstraints'); // eslint-disable-line no-console
   return this.getUserMedia({ audio: constraints }).then(this._setInputTracksFromStream.bind(this, false));
 };
 
@@ -6172,6 +6178,7 @@ PeerConnection.prototype.openWithConstraints = function (constraints) {
  * @param {MediaStream} stream
  */
 PeerConnection.prototype.setInputTracksFromStream = function (stream) {
+  console.log('setInputTracksFromStream'); // eslint-disable-line no-console
   var self = this;
   return this._setInputTracksFromStream(true, stream).then(function () {
     self._shouldManageStream = false;
@@ -6179,6 +6186,7 @@ PeerConnection.prototype.setInputTracksFromStream = function (stream) {
 };
 
 PeerConnection.prototype._createAnalyser = function (audioContext, options) {
+  console.log('_createAnalyser'); // eslint-disable-line no-console
   options = Object.assign({
     fftSize: 32,
     smoothingTimeConstant: 0.3
@@ -6193,9 +6201,11 @@ PeerConnection.prototype._createAnalyser = function (audioContext, options) {
 };
 
 PeerConnection.prototype._setVolumeHandler = function (handler) {
+  console.log('_setVolumeHandler'); // eslint-disable-line no-console
   this.onvolume = handler;
 };
 PeerConnection.prototype._startPollingVolume = function () {
+  console.log('_startPollingVolume'); // eslint-disable-line no-console
   if (!this._audioContext || !this.stream || !this._remoteStream) {
     return;
   }
@@ -6253,6 +6263,7 @@ PeerConnection.prototype._startPollingVolume = function () {
 };
 
 PeerConnection.prototype._stopStream = function _stopStream(stream) {
+  console.log('_stopStream'); // eslint-disable-line no-console
   // We shouldn't stop the tracks if they were not created inside
   //   this PeerConnection.
   if (!this._shouldManageStream) {
@@ -6278,6 +6289,7 @@ PeerConnection.prototype._stopStream = function _stopStream(stream) {
  * @private
  */
 PeerConnection.prototype._updateInputStreamSource = function (stream) {
+  console.log('_updateInputStreamSource'); // eslint-disable-line no-console
   if (this._inputStreamSource) {
     this._inputStreamSource.disconnect();
   }
@@ -6293,6 +6305,7 @@ PeerConnection.prototype._updateInputStreamSource = function (stream) {
  * @private
  */
 PeerConnection.prototype._updateOutputStreamSource = function (stream) {
+  console.log('_updateOutputStreamSource'); // eslint-disable-line no-console
   if (this._outputStreamSource) {
     this._outputStreamSource.disconnect();
   }
@@ -6314,6 +6327,7 @@ PeerConnection.prototype._updateOutputStreamSource = function (stream) {
  * @private
  */
 PeerConnection.prototype._setInputTracksFromStream = function (shouldClone, newStream) {
+  console.log('_setInputTracksFromStream'); // eslint-disable-line no-console
   return this._isUnifiedPlan ? this._setInputTracksForUnifiedPlan(shouldClone, newStream) : this._setInputTracksForPlanB(shouldClone, newStream);
 };
 
@@ -6330,6 +6344,7 @@ PeerConnection.prototype._setInputTracksFromStream = function (shouldClone, newS
 PeerConnection.prototype._setInputTracksForPlanB = function (shouldClone, newStream) {
   var _this = this;
 
+  console.log('_setInputTracksForPlanB'); // eslint-disable-line no-console
   if (!newStream) {
     return Promise.reject(new InvalidArgumentError('Can not set input stream to null while in a call'));
   }
@@ -6384,6 +6399,7 @@ PeerConnection.prototype._setInputTracksForPlanB = function (shouldClone, newStr
 PeerConnection.prototype._setInputTracksForUnifiedPlan = function (shouldClone, newStream) {
   var _this2 = this;
 
+  console.log('_setInputTracksForUnifiedPlan'); // eslint-disable-line no-console
   if (!newStream) {
     return Promise.reject(new InvalidArgumentError('Can not set input stream to null while in a call'));
   }
@@ -6424,6 +6440,7 @@ PeerConnection.prototype._setInputTracksForUnifiedPlan = function (shouldClone, 
 };
 
 PeerConnection.prototype._onInputDevicesChanged = function () {
+  console.log('_onInputDevicesChanged'); // eslint-disable-line no-console
   if (!this.stream) {
     return;
   }
@@ -6441,11 +6458,13 @@ PeerConnection.prototype._onInputDevicesChanged = function () {
 };
 
 PeerConnection.prototype._onIceGatheringFailure = function (type) {
+  console.log('_onIceGatheringFailure'); // eslint-disable-line no-console
   this._hasIceGatheringFailures = true;
   this.onicegatheringfailure(type);
 };
 
 PeerConnection.prototype._onMediaConnectionStateChange = function (newState) {
+  console.log('_onMediaConnectionStateChange'); // eslint-disable-line no-console
   var previousState = this._iceState;
 
   if (previousState === newState || newState !== 'connected' && newState !== 'disconnected' && newState !== 'failed') {
@@ -6482,6 +6501,7 @@ PeerConnection.prototype._onMediaConnectionStateChange = function (newState) {
 };
 
 PeerConnection.prototype._setSinkIds = function (sinkIds) {
+  console.log('_setSinkIds'); // eslint-disable-line no-console
   if (!this._isSinkSupported) {
     return Promise.reject(new NotSupportedError('Audio output selection is not supported by this browser'));
   }
@@ -6510,6 +6530,7 @@ PeerConnection.prototype._stopIceGatheringTimeout = function stopIceGatheringTim
 };
 
 PeerConnection.prototype._updateAudioOutputs = function updateAudioOutputs() {
+  console.log('_updateAudioOutputs'); // eslint-disable-line no-console
   var addedOutputIds = Array.from(this.sinkIds).filter(function (id) {
     return !this.outputs.has(id);
   }, this);
@@ -6530,6 +6551,7 @@ PeerConnection.prototype._createAudio = function createAudio(arr) {
 };
 
 PeerConnection.prototype._createAudioOutput = function createAudioOutput(id) {
+  console.log('_createAudioOutput'); // eslint-disable-line no-console
   var dest = this._audioContext.createMediaStreamDestination();
   this._mediaStreamSource.connect(dest);
 
@@ -6548,6 +6570,7 @@ PeerConnection.prototype._createAudioOutput = function createAudioOutput(id) {
 };
 
 PeerConnection.prototype._removeAudioOutputs = function removeAudioOutputs() {
+  console.log('_removeAudioOutputs'); // eslint-disable-line no-console
   if (this._masterAudio && typeof this._masterAudioDeviceId !== 'undefined') {
     this._disableOutput(this, this._masterAudioDeviceId);
     this.outputs.delete(this._masterAudioDeviceId);

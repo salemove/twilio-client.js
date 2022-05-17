@@ -295,6 +295,7 @@ class AudioHelper extends EventEmitter {
    * @param audioConstraints - The MediaTrackConstraints to apply.
    */
   setAudioConstraints(audioConstraints: MediaTrackConstraints): Promise<void> {
+    console.log('setAudioConstraints'); // eslint-disable-line no-console
     this._audioConstraints = Object.assign({ }, audioConstraints);
     delete this._audioConstraints.deviceId;
 
@@ -309,6 +310,7 @@ class AudioHelper extends EventEmitter {
    *   input device with.
    */
   setInputDevice(deviceId: string): Promise<void> {
+    console.log('setInputDevice'); // eslint-disable-line no-console
     return !isFirefox()
       ? this._setInputDevice(deviceId, false)
       : Promise.reject(new NotSupportedError('Firefox does not currently support opening multiple ' +
@@ -413,6 +415,7 @@ class AudioHelper extends EventEmitter {
    * @returns Whether the device was active
    */
   private _removeLostInput = (lostDevice: MediaDeviceInfo): boolean => {
+    console.log('_removeLostInput'); // eslint-disable-line no-console
     if (!this.inputDevice || this.inputDevice.deviceId !== lostDevice.deviceId) {
       return false;
     }
@@ -437,6 +440,7 @@ class AudioHelper extends EventEmitter {
    * @returns Whether the device was active
    */
   private _removeLostOutput = (lostDevice: MediaDeviceInfo): boolean => {
+    console.log('_removeLostOutput'); // eslint-disable-line no-console
     const wasSpeakerLost: boolean = this.speakerDevices.delete(lostDevice);
     const wasRingtoneLost: boolean = this.ringtoneDevices.delete(lostDevice);
     return wasSpeakerLost || wasRingtoneLost;
@@ -464,6 +468,7 @@ class AudioHelper extends EventEmitter {
    *   the specified device is already active.
    */
   private _setInputDevice(deviceId: string, forceGetUserMedia: boolean): Promise<void> {
+    console.log('_setInputDevice'); // eslint-disable-line no-console
     if (typeof deviceId !== 'string') {
       return Promise.reject(new InvalidArgumentError('Must specify the device to set'));
     }
