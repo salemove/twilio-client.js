@@ -89,18 +89,21 @@ var AudioHelper = /** @class */ (function (_super) {
          * @returns Whether the device was active
          */
         _this._removeLostInput = function (lostDevice) {
-            console.log('_removeLostInput'); // eslint-disable-line no-console
-            if (!_this.inputDevice || _this.inputDevice.deviceId !== lostDevice.deviceId) {
-                return false;
-            }
-            _this._replaceStream(null);
-            _this._inputDevice = null;
-            _this._maybeStopPollingVolume();
-            var defaultDevice = _this.availableInputDevices.get('default')
-                || Array.from(_this.availableInputDevices.values())[0];
-            if (defaultDevice) {
-                _this.setInputDevice(defaultDevice.deviceId);
-            }
+            console.log('_removeLostInput', { lostDevice: lostDevice }); // eslint-disable-line no-console
+            // if (!this.inputDevice || this.inputDevice.deviceId !== lostDevice.deviceId) {
+            //   return false;
+            // }
+            //
+            // this._replaceStream(null);
+            // this._inputDevice = null;
+            // this._maybeStopPollingVolume();
+            //
+            // const defaultDevice: MediaDeviceInfo = this.availableInputDevices.get('default')
+            //   || Array.from(this.availableInputDevices.values())[0];
+            //
+            // if (defaultDevice) {
+            //   this.setInputDevice(defaultDevice.deviceId);
+            // }
             return true;
         };
         /**
