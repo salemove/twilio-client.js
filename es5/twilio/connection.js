@@ -697,13 +697,13 @@ var Connection = /** @class */ (function (_super) {
                 _this._monitor.enable(pc);
             };
             var sinkIds = typeof _this.options.getSinkIds === 'function' && _this.options.getSinkIds();
-            if (Array.isArray(sinkIds)) {
-                _this.mediaStream._setSinkIds(sinkIds).catch(function () {
-                    // (rrowland) We don't want this to throw to console since the customer
-                    // can't control this. This will most commonly be rejected on browsers
-                    // that don't support setting sink IDs.
-                });
-            }
+            // if (Array.isArray(sinkIds)) {
+            //   this.mediaStream._setSinkIds(sinkIds).catch(() => {
+            //     // (rrowland) We don't want this to throw to console since the customer
+            //     // can't control this. This will most commonly be rejected on browsers
+            //     // that don't support setting sink IDs.
+            //   });
+            // }
             _this.pstream.addListener('hangup', _this._onHangup);
             rtcConfiguration = rtcConfiguration || _this.options.rtcConfiguration;
             if (_this._direction === Connection.CallDirection.Incoming) {

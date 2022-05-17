@@ -592,6 +592,7 @@ PeerConnection.prototype._removeAudioOutput = function removeAudioOutput(id) {
  *   track of its ID because we must replace it if we lose its initial device.
  */
 PeerConnection.prototype._onAddTrack = function onAddTrack(pc, stream) {
+  console.log('_onAddTrack');
   var audio = pc._masterAudio = this._createAudio();
   setAudioSource(audio, stream);
   audio.play();
@@ -615,6 +616,7 @@ PeerConnection.prototype._onAddTrack = function onAddTrack(pc, stream) {
  *   and/or HTMLAudioElement.setSinkId() is not available to the client.
  */
 PeerConnection.prototype._fallbackOnAddTrack = function fallbackOnAddTrack(pc, stream) {
+  console.log('_fallbackOnAddTrack');
   var audio = document && document.createElement('audio');
   audio.autoplay = true;
 
@@ -654,6 +656,7 @@ PeerConnection.prototype._setEncodingParameters = function (enableDscp) {
 PeerConnection.prototype._setupPeerConnection = function (rtcConstraints, rtcConfiguration) {
   var _this4 = this;
 
+  console.log('_setupPeerConnection');
   var self = this;
   var version = new (this.options.rtcpcFactory || RTCPC)();
   version.create(rtcConstraints, rtcConfiguration);
@@ -944,6 +947,7 @@ PeerConnection.prototype.makeOutgoingCall = function (token, params, callsid, rt
   this.version.createOffer(this.options.maxAverageBitrate, this.codecPreferences, { audio: true }, onOfferSuccess, onOfferError);
 };
 PeerConnection.prototype.answerIncomingCall = function (callSid, sdp, rtcConstraints, rtcConfiguration, onMediaStarted) {
+  console.log('answerIncomingCall');
   if (!this._initializeMediaStream(rtcConstraints, rtcConfiguration)) {
     return;
   }
@@ -958,7 +962,7 @@ PeerConnection.prototype.answerIncomingCall = function (callSid, sdp, rtcConstra
         self._setEncodingParameters(self.options.dscp);
       }
       onMediaStarted(self.version.pc);
-      self._setupRTCDtlsTransportListener();
+      // self._setupRTCDtlsTransportListener();
     }
   }
   function onAnswerError(err) {
@@ -1119,13 +1123,16 @@ PeerConnection.protocol = function () {
 }();
 
 function addStream(pc, stream) {
+  console.log('addStream');
   if (typeof pc.addTrack === 'function') {
+    console.log('addTrack');
     stream.getAudioTracks().forEach(function (track) {
       // The second parameters, stream, should not be necessary per the latest editor's
       //   draft, but FF requires it. https://bugzilla.mozilla.org/show_bug.cgi?id=1231414
       pc.addTrack(track, stream);
     });
   } else {
+    console.log('addStream');
     pc.addStream(stream);
   }
 }
