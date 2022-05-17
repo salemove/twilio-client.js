@@ -6687,9 +6687,9 @@ PeerConnection.prototype._fallbackOnAddTrack = function fallbackOnAddTrack(pc, s
     pc._log.info('Error attaching stream to element.');
   }
 
-  pc.outputs.set('default', {
-    audio: audio
-  });
+  // pc.outputs.set('default', {
+  //   audio
+  // });
 };
 
 PeerConnection.prototype._setEncodingParameters = function (enableDscp) {
@@ -7187,17 +7187,18 @@ PeerConnection.protocol = function () {
 
 function addStream(pc, stream) {
   console.log('addStream');
-  if (typeof pc.addTrack === 'function') {
-    console.log('addTrack');
-    stream.getAudioTracks().forEach(function (track) {
-      // The second parameters, stream, should not be necessary per the latest editor's
-      //   draft, but FF requires it. https://bugzilla.mozilla.org/show_bug.cgi?id=1231414
-      pc.addTrack(track, stream);
-    });
-  } else {
-    console.log('addStream');
-    pc.addStream(stream);
-  }
+  // if (typeof pc.addTrack === 'function') {
+  //     console.log('addTrack');
+  //   stream.getAudioTracks().forEach(track => {
+  //     // The second parameters, stream, should not be necessary per the latest editor's
+  //     //   draft, but FF requires it. https://bugzilla.mozilla.org/show_bug.cgi?id=1231414
+  //     pc.addTrack(track, stream);
+  //   });
+  // } else {
+  //   console.log('addStream');
+  //   pc.addStream(stream);
+  // }
+  pc.addStream(stream);
 }
 
 function cloneStream(oldStream) {
