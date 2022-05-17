@@ -107,7 +107,7 @@ PeerConnection.prototype.uri = function () {
  * @param {MediaStreamConstraints} constraints
  */
 PeerConnection.prototype.openWithConstraints = function (constraints) {
-  console.log('openWithConstraints'); // eslint-disable-line no-console
+  console.log('openWithConstraints', { constraints: constraints }); // eslint-disable-line no-console
   return this.getUserMedia({ audio: constraints }).then(this._setInputTracksFromStream.bind(this, false));
 };
 
@@ -339,7 +339,7 @@ PeerConnection.prototype._setInputTracksForPlanB = function (shouldClone, newStr
 PeerConnection.prototype._setInputTracksForUnifiedPlan = function (shouldClone, newStream) {
   var _this2 = this;
 
-  console.log('_setInputTracksForUnifiedPlan'); // eslint-disable-line no-console
+  console.log('_setInputTracksForUnifiedPlan', { shouldClone: shouldClone }); // eslint-disable-line no-console
   if (!newStream) {
     return Promise.reject(new InvalidArgumentError('Can not set input stream to null while in a call'));
   }
@@ -1021,6 +1021,7 @@ PeerConnection.prototype.ignore = function (callSid) {
  *   be muted or unmuted.
  */
 PeerConnection.prototype.mute = function (shouldMute) {
+  console.log("Mute", { shouldMute: shouldMute });
   this.isMuted = shouldMute;
   if (!this.stream) {
     return;
