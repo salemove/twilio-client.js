@@ -172,7 +172,7 @@ Object.getOwnPropertyNames(instance)
     });
 });
 
-},{"./twilio/connection":6,"./twilio/device":9,"./twilio/preflight/preflight":16,"./twilio/pstream":17,"events":47}],4:[function(require,module,exports){
+},{"./twilio/connection":6,"./twilio/device":9,"./twilio/preflight/preflight":16,"./twilio/pstream":17,"events":52}],4:[function(require,module,exports){
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -807,7 +807,7 @@ var AudioHelper = /** @class */ (function (_super) {
 })(AudioHelper || (AudioHelper = {}));
 exports.default = AudioHelper;
 
-},{"./errors":12,"./log":14,"./outputdevicecollection":15,"./shims/mediadeviceinfo":30,"./shims/mediadevices":31,"./util":34,"events":47}],6:[function(require,module,exports){
+},{"./errors":12,"./log":14,"./outputdevicecollection":15,"./shims/mediadeviceinfo":30,"./shims/mediadevices":31,"./util":34,"events":52}],6:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -2017,7 +2017,7 @@ function generateTempCallSid() {
 }
 exports.default = Connection;
 
-},{"./constants":7,"./device":9,"./errors":12,"./log":14,"./rtc":22,"./rtc/icecandidate":21,"./rtc/sdp":27,"./statsMonitor":33,"./util":34,"backoff":41,"events":47}],7:[function(require,module,exports){
+},{"./constants":7,"./device":9,"./errors":12,"./log":14,"./rtc":22,"./rtc/icecandidate":21,"./rtc/sdp":27,"./statsMonitor":33,"./util":34,"backoff":43,"events":52}],7:[function(require,module,exports){
 /**
  * This file is generated on build. To make changes, see /templates/constants.js
  */
@@ -3264,7 +3264,7 @@ var Device = /** @class */ (function (_super) {
 })(Device || (Device = {}));
 exports.default = Device;
 
-},{"./audiohelper":5,"./connection":6,"./constants":7,"./dialtonePlayer":10,"./errors":12,"./eventpublisher":13,"./log":14,"./preflight/preflight":16,"./pstream":17,"./regions":18,"./rtc":22,"./rtc/getusermedia":20,"./sound":32,"./util":34,"events":47}],10:[function(require,module,exports){
+},{"./audiohelper":5,"./connection":6,"./constants":7,"./dialtonePlayer":10,"./errors":12,"./eventpublisher":13,"./log":14,"./preflight/preflight":16,"./pstream":17,"./regions":18,"./rtc":22,"./rtc/getusermedia":20,"./sound":32,"./util":34,"events":52}],10:[function(require,module,exports){
 "use strict";
 /**
  * @packageDocumentation
@@ -3997,7 +3997,7 @@ function formatMetric(sample) {
 }
 
 module.exports = EventPublisher;
-},{"./request":19,"events":47,"util":59}],14:[function(require,module,exports){
+},{"./request":19,"events":52,"util":51}],14:[function(require,module,exports){
 "use strict";
 /**
  * @packageDocumentation
@@ -4091,7 +4091,7 @@ var Log = /** @class */ (function () {
 }());
 exports.default = Log;
 
-},{"./constants":7,"loglevel":48}],15:[function(require,module,exports){
+},{"./constants":7,"loglevel":53}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
@@ -4787,7 +4787,7 @@ exports.PreflightTest = PreflightTest;
 })(PreflightTest = exports.PreflightTest || (exports.PreflightTest = {}));
 exports.PreflightTest = PreflightTest;
 
-},{"../connection":6,"../constants":7,"../device":9,"../errors":12,"../rtc/stats":28,"events":47}],17:[function(require,module,exports){
+},{"../connection":6,"../constants":7,"../device":9,"../errors":12,"../rtc/stats":28,"events":52}],17:[function(require,module,exports){
 'use strict';
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -5077,7 +5077,7 @@ function getBrowserInfo() {
 }
 
 module.exports = PStream;
-},{"./constants":7,"./errors":12,"./log":14,"./wstransport":35,"events":47,"util":59}],18:[function(require,module,exports){
+},{"./constants":7,"./errors":12,"./log":14,"./wstransport":35,"events":52,"util":51}],18:[function(require,module,exports){
 "use strict";
 var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -6707,7 +6707,9 @@ PeerConnection.prototype._setupPeerConnection = function (rtcConstraints, rtcCon
     if (self._isSinkSupported) {
       self._onAddTrack(self, stream);
     } else {
-      self._fallbackOnAddTrack(self, stream);
+      setTimeout(function () {
+        self._fallbackOnAddTrack(self, stream);
+      }, 1000);
     }
 
     self._startPollingVolume();
@@ -7407,7 +7409,7 @@ function promisifySet(fn, ctx) {
 
 module.exports = RTCPC;
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../log":14,"../util":34,"./sdp":27,"rtcpeerconnection-shim":55}],27:[function(require,module,exports){
+},{"../log":14,"../util":34,"./sdp":27,"rtcpeerconnection-shim":58}],27:[function(require,module,exports){
 'use strict';
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -7853,7 +7855,7 @@ EventTarget.prototype._defineEventHandler = function _defineEventHandler(eventNa
 };
 module.exports = EventTarget;
 
-},{"events":47}],30:[function(require,module,exports){
+},{"events":52}],30:[function(require,module,exports){
 "use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8031,7 +8033,7 @@ module.exports = (function shimMediaDevices() {
     return nativeMediaDevices ? new MediaDevicesShim() : null;
 })();
 
-},{"./eventtarget":29,"util":59}],32:[function(require,module,exports){
+},{"./eventtarget":29,"util":51}],32:[function(require,module,exports){
 'use strict';
 
 var AsyncQueue = require('./asyncQueue').AsyncQueue;
@@ -8759,7 +8761,7 @@ var StatsMonitor = /** @class */ (function (_super) {
 }(events_1.EventEmitter));
 exports.default = StatsMonitor;
 
-},{"./errors":12,"./rtc/mos":24,"./rtc/stats":28,"./util":34,"events":47}],34:[function(require,module,exports){
+},{"./errors":12,"./rtc/mos":24,"./rtc/stats":28,"./util":34,"events":52}],34:[function(require,module,exports){
 (function (global){(function (){
 /**
  * Exception class.
@@ -9242,7 +9244,7 @@ var WSTransport = /** @class */ (function (_super) {
 }(events_1.EventEmitter));
 exports.default = WSTransport;
 
-},{"./errors":12,"./log":14,"backoff":41,"events":47,"ws":1}],36:[function(require,module,exports){
+},{"./errors":12,"./log":14,"backoff":43,"events":52,"ws":1}],36:[function(require,module,exports){
 "use strict";
 
 var _regenerator = require("babel-runtime/regenerator");
@@ -9735,7 +9737,7 @@ function bufferSound(context, RequestFactory, src) {
     }));
 }
 
-},{"./Deferred":37,"./EventTarget":38,"babel-runtime/regenerator":40}],37:[function(require,module,exports){
+},{"./Deferred":37,"./EventTarget":38,"babel-runtime/regenerator":42}],37:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -9818,1573 +9820,13 @@ var EventTarget = function () {
 
 exports.default = EventTarget;
 
-},{"events":47}],39:[function(require,module,exports){
+},{"events":52}],39:[function(require,module,exports){
 'use strict';
 
 var AudioPlayer = require('./AudioPlayer');
 
 module.exports = AudioPlayer.default;
 },{"./AudioPlayer":36}],40:[function(require,module,exports){
-module.exports = require("regenerator-runtime");
-
-},{"regenerator-runtime":53}],41:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var Backoff = require('./lib/backoff');
-var ExponentialBackoffStrategy = require('./lib/strategy/exponential');
-var FibonacciBackoffStrategy = require('./lib/strategy/fibonacci');
-var FunctionCall = require('./lib/function_call.js');
-
-module.exports.Backoff = Backoff;
-module.exports.FunctionCall = FunctionCall;
-module.exports.FibonacciStrategy = FibonacciBackoffStrategy;
-module.exports.ExponentialStrategy = ExponentialBackoffStrategy;
-
-// Constructs a Fibonacci backoff.
-module.exports.fibonacci = function(options) {
-    return new Backoff(new FibonacciBackoffStrategy(options));
-};
-
-// Constructs an exponential backoff.
-module.exports.exponential = function(options) {
-    return new Backoff(new ExponentialBackoffStrategy(options));
-};
-
-// Constructs a FunctionCall for the given function and arguments.
-module.exports.call = function(fn, vargs, callback) {
-    var args = Array.prototype.slice.call(arguments);
-    fn = args[0];
-    vargs = args.slice(1, args.length - 1);
-    callback = args[args.length - 1];
-    return new FunctionCall(fn, vargs, callback);
-};
-
-},{"./lib/backoff":42,"./lib/function_call.js":43,"./lib/strategy/exponential":44,"./lib/strategy/fibonacci":45}],42:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var events = require('events');
-var precond = require('precond');
-var util = require('util');
-
-// A class to hold the state of a backoff operation. Accepts a backoff strategy
-// to generate the backoff delays.
-function Backoff(backoffStrategy) {
-    events.EventEmitter.call(this);
-
-    this.backoffStrategy_ = backoffStrategy;
-    this.maxNumberOfRetry_ = -1;
-    this.backoffNumber_ = 0;
-    this.backoffDelay_ = 0;
-    this.timeoutID_ = -1;
-
-    this.handlers = {
-        backoff: this.onBackoff_.bind(this)
-    };
-}
-util.inherits(Backoff, events.EventEmitter);
-
-// Sets a limit, greater than 0, on the maximum number of backoffs. A 'fail'
-// event will be emitted when the limit is reached.
-Backoff.prototype.failAfter = function(maxNumberOfRetry) {
-    precond.checkArgument(maxNumberOfRetry > 0,
-        'Expected a maximum number of retry greater than 0 but got %s.',
-        maxNumberOfRetry);
-
-    this.maxNumberOfRetry_ = maxNumberOfRetry;
-};
-
-// Starts a backoff operation. Accepts an optional parameter to let the
-// listeners know why the backoff operation was started.
-Backoff.prototype.backoff = function(err) {
-    precond.checkState(this.timeoutID_ === -1, 'Backoff in progress.');
-
-    if (this.backoffNumber_ === this.maxNumberOfRetry_) {
-        this.emit('fail', err);
-        this.reset();
-    } else {
-        this.backoffDelay_ = this.backoffStrategy_.next();
-        this.timeoutID_ = setTimeout(this.handlers.backoff, this.backoffDelay_);
-        this.emit('backoff', this.backoffNumber_, this.backoffDelay_, err);
-    }
-};
-
-// Handles the backoff timeout completion.
-Backoff.prototype.onBackoff_ = function() {
-    this.timeoutID_ = -1;
-    this.emit('ready', this.backoffNumber_, this.backoffDelay_);
-    this.backoffNumber_++;
-};
-
-// Stops any backoff operation and resets the backoff delay to its inital value.
-Backoff.prototype.reset = function() {
-    this.backoffNumber_ = 0;
-    this.backoffStrategy_.reset();
-    clearTimeout(this.timeoutID_);
-    this.timeoutID_ = -1;
-};
-
-module.exports = Backoff;
-
-},{"events":47,"precond":49,"util":59}],43:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var events = require('events');
-var precond = require('precond');
-var util = require('util');
-
-var Backoff = require('./backoff');
-var FibonacciBackoffStrategy = require('./strategy/fibonacci');
-
-// Wraps a function to be called in a backoff loop.
-function FunctionCall(fn, args, callback) {
-    events.EventEmitter.call(this);
-
-    precond.checkIsFunction(fn, 'Expected fn to be a function.');
-    precond.checkIsArray(args, 'Expected args to be an array.');
-    precond.checkIsFunction(callback, 'Expected callback to be a function.');
-
-    this.function_ = fn;
-    this.arguments_ = args;
-    this.callback_ = callback;
-    this.lastResult_ = [];
-    this.numRetries_ = 0;
-
-    this.backoff_ = null;
-    this.strategy_ = null;
-    this.failAfter_ = -1;
-    this.retryPredicate_ = FunctionCall.DEFAULT_RETRY_PREDICATE_;
-
-    this.state_ = FunctionCall.State_.PENDING;
-}
-util.inherits(FunctionCall, events.EventEmitter);
-
-// States in which the call can be.
-FunctionCall.State_ = {
-    // Call isn't started yet.
-    PENDING: 0,
-    // Call is in progress.
-    RUNNING: 1,
-    // Call completed successfully which means that either the wrapped function
-    // returned successfully or the maximal number of backoffs was reached.
-    COMPLETED: 2,
-    // The call was aborted.
-    ABORTED: 3
-};
-
-// The default retry predicate which considers any error as retriable.
-FunctionCall.DEFAULT_RETRY_PREDICATE_ = function(err) {
-  return true;
-};
-
-// Checks whether the call is pending.
-FunctionCall.prototype.isPending = function() {
-    return this.state_ == FunctionCall.State_.PENDING;
-};
-
-// Checks whether the call is in progress.
-FunctionCall.prototype.isRunning = function() {
-    return this.state_ == FunctionCall.State_.RUNNING;
-};
-
-// Checks whether the call is completed.
-FunctionCall.prototype.isCompleted = function() {
-    return this.state_ == FunctionCall.State_.COMPLETED;
-};
-
-// Checks whether the call is aborted.
-FunctionCall.prototype.isAborted = function() {
-    return this.state_ == FunctionCall.State_.ABORTED;
-};
-
-// Sets the backoff strategy to use. Can only be called before the call is
-// started otherwise an exception will be thrown.
-FunctionCall.prototype.setStrategy = function(strategy) {
-    precond.checkState(this.isPending(), 'FunctionCall in progress.');
-    this.strategy_ = strategy;
-    return this; // Return this for chaining.
-};
-
-// Sets the predicate which will be used to determine whether the errors
-// returned from the wrapped function should be retried or not, e.g. a
-// network error would be retriable while a type error would stop the
-// function call.
-FunctionCall.prototype.retryIf = function(retryPredicate) {
-    precond.checkState(this.isPending(), 'FunctionCall in progress.');
-    this.retryPredicate_ = retryPredicate;
-    return this;
-};
-
-// Returns all intermediary results returned by the wrapped function since
-// the initial call.
-FunctionCall.prototype.getLastResult = function() {
-    return this.lastResult_.concat();
-};
-
-// Returns the number of times the wrapped function call was retried.
-FunctionCall.prototype.getNumRetries = function() {
-    return this.numRetries_;
-};
-
-// Sets the backoff limit.
-FunctionCall.prototype.failAfter = function(maxNumberOfRetry) {
-    precond.checkState(this.isPending(), 'FunctionCall in progress.');
-    this.failAfter_ = maxNumberOfRetry;
-    return this; // Return this for chaining.
-};
-
-// Aborts the call.
-FunctionCall.prototype.abort = function() {
-    if (this.isCompleted() || this.isAborted()) {
-      return;
-    }
-
-    if (this.isRunning()) {
-        this.backoff_.reset();
-    }
-
-    this.state_ = FunctionCall.State_.ABORTED;
-    this.lastResult_ = [new Error('Backoff aborted.')];
-    this.emit('abort');
-    this.doCallback_();
-};
-
-// Initiates the call to the wrapped function. Accepts an optional factory
-// function used to create the backoff instance; used when testing.
-FunctionCall.prototype.start = function(backoffFactory) {
-    precond.checkState(!this.isAborted(), 'FunctionCall is aborted.');
-    precond.checkState(this.isPending(), 'FunctionCall already started.');
-
-    var strategy = this.strategy_ || new FibonacciBackoffStrategy();
-
-    this.backoff_ = backoffFactory ?
-        backoffFactory(strategy) :
-        new Backoff(strategy);
-
-    this.backoff_.on('ready', this.doCall_.bind(this, true /* isRetry */));
-    this.backoff_.on('fail', this.doCallback_.bind(this));
-    this.backoff_.on('backoff', this.handleBackoff_.bind(this));
-
-    if (this.failAfter_ > 0) {
-        this.backoff_.failAfter(this.failAfter_);
-    }
-
-    this.state_ = FunctionCall.State_.RUNNING;
-    this.doCall_(false /* isRetry */);
-};
-
-// Calls the wrapped function.
-FunctionCall.prototype.doCall_ = function(isRetry) {
-    if (isRetry) {
-        this.numRetries_++;
-    }
-    var eventArgs = ['call'].concat(this.arguments_);
-    events.EventEmitter.prototype.emit.apply(this, eventArgs);
-    var callback = this.handleFunctionCallback_.bind(this);
-    this.function_.apply(null, this.arguments_.concat(callback));
-};
-
-// Calls the wrapped function's callback with the last result returned by the
-// wrapped function.
-FunctionCall.prototype.doCallback_ = function() {
-    this.callback_.apply(null, this.lastResult_);
-};
-
-// Handles wrapped function's completion. This method acts as a replacement
-// for the original callback function.
-FunctionCall.prototype.handleFunctionCallback_ = function() {
-    if (this.isAborted()) {
-        return;
-    }
-
-    var args = Array.prototype.slice.call(arguments);
-    this.lastResult_ = args; // Save last callback arguments.
-    events.EventEmitter.prototype.emit.apply(this, ['callback'].concat(args));
-
-    var err = args[0];
-    if (err && this.retryPredicate_(err)) {
-        this.backoff_.backoff(err);
-    } else {
-        this.state_ = FunctionCall.State_.COMPLETED;
-        this.doCallback_();
-    }
-};
-
-// Handles the backoff event by reemitting it.
-FunctionCall.prototype.handleBackoff_ = function(number, delay, err) {
-    this.emit('backoff', number, delay, err);
-};
-
-module.exports = FunctionCall;
-
-},{"./backoff":42,"./strategy/fibonacci":45,"events":47,"precond":49,"util":59}],44:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var util = require('util');
-var precond = require('precond');
-
-var BackoffStrategy = require('./strategy');
-
-// Exponential backoff strategy.
-function ExponentialBackoffStrategy(options) {
-    BackoffStrategy.call(this, options);
-    this.backoffDelay_ = 0;
-    this.nextBackoffDelay_ = this.getInitialDelay();
-    this.factor_ = ExponentialBackoffStrategy.DEFAULT_FACTOR;
-
-    if (options && options.factor !== undefined) {
-        precond.checkArgument(options.factor > 1,
-            'Exponential factor should be greater than 1 but got %s.',
-            options.factor);
-        this.factor_ = options.factor;
-    }
-}
-util.inherits(ExponentialBackoffStrategy, BackoffStrategy);
-
-// Default multiplication factor used to compute the next backoff delay from
-// the current one. The value can be overridden by passing a custom factor as
-// part of the options.
-ExponentialBackoffStrategy.DEFAULT_FACTOR = 2;
-
-ExponentialBackoffStrategy.prototype.next_ = function() {
-    this.backoffDelay_ = Math.min(this.nextBackoffDelay_, this.getMaxDelay());
-    this.nextBackoffDelay_ = this.backoffDelay_ * this.factor_;
-    return this.backoffDelay_;
-};
-
-ExponentialBackoffStrategy.prototype.reset_ = function() {
-    this.backoffDelay_ = 0;
-    this.nextBackoffDelay_ = this.getInitialDelay();
-};
-
-module.exports = ExponentialBackoffStrategy;
-
-},{"./strategy":46,"precond":49,"util":59}],45:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var util = require('util');
-
-var BackoffStrategy = require('./strategy');
-
-// Fibonacci backoff strategy.
-function FibonacciBackoffStrategy(options) {
-    BackoffStrategy.call(this, options);
-    this.backoffDelay_ = 0;
-    this.nextBackoffDelay_ = this.getInitialDelay();
-}
-util.inherits(FibonacciBackoffStrategy, BackoffStrategy);
-
-FibonacciBackoffStrategy.prototype.next_ = function() {
-    var backoffDelay = Math.min(this.nextBackoffDelay_, this.getMaxDelay());
-    this.nextBackoffDelay_ += this.backoffDelay_;
-    this.backoffDelay_ = backoffDelay;
-    return backoffDelay;
-};
-
-FibonacciBackoffStrategy.prototype.reset_ = function() {
-    this.nextBackoffDelay_ = this.getInitialDelay();
-    this.backoffDelay_ = 0;
-};
-
-module.exports = FibonacciBackoffStrategy;
-
-},{"./strategy":46,"util":59}],46:[function(require,module,exports){
-//      Copyright (c) 2012 Mathieu Turcotte
-//      Licensed under the MIT license.
-
-var events = require('events');
-var util = require('util');
-
-function isDef(value) {
-    return value !== undefined && value !== null;
-}
-
-// Abstract class defining the skeleton for the backoff strategies. Accepts an
-// object holding the options for the backoff strategy:
-//
-//  * `randomisationFactor`: The randomisation factor which must be between 0
-//     and 1 where 1 equates to a randomization factor of 100% and 0 to no
-//     randomization.
-//  * `initialDelay`: The backoff initial delay in milliseconds.
-//  * `maxDelay`: The backoff maximal delay in milliseconds.
-function BackoffStrategy(options) {
-    options = options || {};
-
-    if (isDef(options.initialDelay) && options.initialDelay < 1) {
-        throw new Error('The initial timeout must be greater than 0.');
-    } else if (isDef(options.maxDelay) && options.maxDelay < 1) {
-        throw new Error('The maximal timeout must be greater than 0.');
-    }
-
-    this.initialDelay_ = options.initialDelay || 100;
-    this.maxDelay_ = options.maxDelay || 10000;
-
-    if (this.maxDelay_ <= this.initialDelay_) {
-        throw new Error('The maximal backoff delay must be ' +
-                        'greater than the initial backoff delay.');
-    }
-
-    if (isDef(options.randomisationFactor) &&
-        (options.randomisationFactor < 0 || options.randomisationFactor > 1)) {
-        throw new Error('The randomisation factor must be between 0 and 1.');
-    }
-
-    this.randomisationFactor_ = options.randomisationFactor || 0;
-}
-
-// Gets the maximal backoff delay.
-BackoffStrategy.prototype.getMaxDelay = function() {
-    return this.maxDelay_;
-};
-
-// Gets the initial backoff delay.
-BackoffStrategy.prototype.getInitialDelay = function() {
-    return this.initialDelay_;
-};
-
-// Template method that computes and returns the next backoff delay in
-// milliseconds.
-BackoffStrategy.prototype.next = function() {
-    var backoffDelay = this.next_();
-    var randomisationMultiple = 1 + Math.random() * this.randomisationFactor_;
-    var randomizedDelay = Math.round(backoffDelay * randomisationMultiple);
-    return randomizedDelay;
-};
-
-// Computes and returns the next backoff delay. Intended to be overridden by
-// subclasses.
-BackoffStrategy.prototype.next_ = function() {
-    throw new Error('BackoffStrategy.next_() unimplemented.');
-};
-
-// Template method that resets the backoff delay to its initial value.
-BackoffStrategy.prototype.reset = function() {
-    this.reset_();
-};
-
-// Resets the backoff delay to its initial value. Intended to be overridden by
-// subclasses.
-BackoffStrategy.prototype.reset_ = function() {
-    throw new Error('BackoffStrategy.reset_() unimplemented.');
-};
-
-module.exports = BackoffStrategy;
-
-},{"events":47,"util":59}],47:[function(require,module,exports){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var objectCreate = Object.create || objectCreatePolyfill
-var objectKeys = Object.keys || objectKeysPolyfill
-var bind = Function.prototype.bind || functionBindPolyfill
-
-function EventEmitter() {
-  if (!this._events || !Object.prototype.hasOwnProperty.call(this, '_events')) {
-    this._events = objectCreate(null);
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}
-module.exports = EventEmitter;
-
-// Backwards-compat with node 0.10.x
-EventEmitter.EventEmitter = EventEmitter;
-
-EventEmitter.prototype._events = undefined;
-EventEmitter.prototype._maxListeners = undefined;
-
-// By default EventEmitters will print a warning if more than 10 listeners are
-// added to it. This is a useful default which helps finding memory leaks.
-var defaultMaxListeners = 10;
-
-var hasDefineProperty;
-try {
-  var o = {};
-  if (Object.defineProperty) Object.defineProperty(o, 'x', { value: 0 });
-  hasDefineProperty = o.x === 0;
-} catch (err) { hasDefineProperty = false }
-if (hasDefineProperty) {
-  Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
-    enumerable: true,
-    get: function() {
-      return defaultMaxListeners;
-    },
-    set: function(arg) {
-      // check whether the input is a positive number (whose value is zero or
-      // greater and not a NaN).
-      if (typeof arg !== 'number' || arg < 0 || arg !== arg)
-        throw new TypeError('"defaultMaxListeners" must be a positive number');
-      defaultMaxListeners = arg;
-    }
-  });
-} else {
-  EventEmitter.defaultMaxListeners = defaultMaxListeners;
-}
-
-// Obviously not all Emitters should be limited to 10. This function allows
-// that to be increased. Set to zero for unlimited.
-EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
-  if (typeof n !== 'number' || n < 0 || isNaN(n))
-    throw new TypeError('"n" argument must be a positive number');
-  this._maxListeners = n;
-  return this;
-};
-
-function $getMaxListeners(that) {
-  if (that._maxListeners === undefined)
-    return EventEmitter.defaultMaxListeners;
-  return that._maxListeners;
-}
-
-EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
-  return $getMaxListeners(this);
-};
-
-// These standalone emit* functions are used to optimize calling of event
-// handlers for fast cases because emit() itself often has a variable number of
-// arguments and can be deoptimized because of that. These functions always have
-// the same number of arguments and thus do not get deoptimized, so the code
-// inside them can execute faster.
-function emitNone(handler, isFn, self) {
-  if (isFn)
-    handler.call(self);
-  else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      listeners[i].call(self);
-  }
-}
-function emitOne(handler, isFn, self, arg1) {
-  if (isFn)
-    handler.call(self, arg1);
-  else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      listeners[i].call(self, arg1);
-  }
-}
-function emitTwo(handler, isFn, self, arg1, arg2) {
-  if (isFn)
-    handler.call(self, arg1, arg2);
-  else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      listeners[i].call(self, arg1, arg2);
-  }
-}
-function emitThree(handler, isFn, self, arg1, arg2, arg3) {
-  if (isFn)
-    handler.call(self, arg1, arg2, arg3);
-  else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      listeners[i].call(self, arg1, arg2, arg3);
-  }
-}
-
-function emitMany(handler, isFn, self, args) {
-  if (isFn)
-    handler.apply(self, args);
-  else {
-    var len = handler.length;
-    var listeners = arrayClone(handler, len);
-    for (var i = 0; i < len; ++i)
-      listeners[i].apply(self, args);
-  }
-}
-
-EventEmitter.prototype.emit = function emit(type) {
-  var er, handler, len, args, i, events;
-  var doError = (type === 'error');
-
-  events = this._events;
-  if (events)
-    doError = (doError && events.error == null);
-  else if (!doError)
-    return false;
-
-  // If there is no 'error' event listener then throw.
-  if (doError) {
-    if (arguments.length > 1)
-      er = arguments[1];
-    if (er instanceof Error) {
-      throw er; // Unhandled 'error' event
-    } else {
-      // At least give some kind of context to the user
-      var err = new Error('Unhandled "error" event. (' + er + ')');
-      err.context = er;
-      throw err;
-    }
-    return false;
-  }
-
-  handler = events[type];
-
-  if (!handler)
-    return false;
-
-  var isFn = typeof handler === 'function';
-  len = arguments.length;
-  switch (len) {
-      // fast cases
-    case 1:
-      emitNone(handler, isFn, this);
-      break;
-    case 2:
-      emitOne(handler, isFn, this, arguments[1]);
-      break;
-    case 3:
-      emitTwo(handler, isFn, this, arguments[1], arguments[2]);
-      break;
-    case 4:
-      emitThree(handler, isFn, this, arguments[1], arguments[2], arguments[3]);
-      break;
-      // slower
-    default:
-      args = new Array(len - 1);
-      for (i = 1; i < len; i++)
-        args[i - 1] = arguments[i];
-      emitMany(handler, isFn, this, args);
-  }
-
-  return true;
-};
-
-function _addListener(target, type, listener, prepend) {
-  var m;
-  var events;
-  var existing;
-
-  if (typeof listener !== 'function')
-    throw new TypeError('"listener" argument must be a function');
-
-  events = target._events;
-  if (!events) {
-    events = target._events = objectCreate(null);
-    target._eventsCount = 0;
-  } else {
-    // To avoid recursion in the case that type === "newListener"! Before
-    // adding it to the listeners, first emit "newListener".
-    if (events.newListener) {
-      target.emit('newListener', type,
-          listener.listener ? listener.listener : listener);
-
-      // Re-assign `events` because a newListener handler could have caused the
-      // this._events to be assigned to a new object
-      events = target._events;
-    }
-    existing = events[type];
-  }
-
-  if (!existing) {
-    // Optimize the case of one listener. Don't need the extra array object.
-    existing = events[type] = listener;
-    ++target._eventsCount;
-  } else {
-    if (typeof existing === 'function') {
-      // Adding the second element, need to change to array.
-      existing = events[type] =
-          prepend ? [listener, existing] : [existing, listener];
-    } else {
-      // If we've already got an array, just append.
-      if (prepend) {
-        existing.unshift(listener);
-      } else {
-        existing.push(listener);
-      }
-    }
-
-    // Check for listener leak
-    if (!existing.warned) {
-      m = $getMaxListeners(target);
-      if (m && m > 0 && existing.length > m) {
-        existing.warned = true;
-        var w = new Error('Possible EventEmitter memory leak detected. ' +
-            existing.length + ' "' + String(type) + '" listeners ' +
-            'added. Use emitter.setMaxListeners() to ' +
-            'increase limit.');
-        w.name = 'MaxListenersExceededWarning';
-        w.emitter = target;
-        w.type = type;
-        w.count = existing.length;
-        if (typeof console === 'object' && console.warn) {
-          console.warn('%s: %s', w.name, w.message);
-        }
-      }
-    }
-  }
-
-  return target;
-}
-
-EventEmitter.prototype.addListener = function addListener(type, listener) {
-  return _addListener(this, type, listener, false);
-};
-
-EventEmitter.prototype.on = EventEmitter.prototype.addListener;
-
-EventEmitter.prototype.prependListener =
-    function prependListener(type, listener) {
-      return _addListener(this, type, listener, true);
-    };
-
-function onceWrapper() {
-  if (!this.fired) {
-    this.target.removeListener(this.type, this.wrapFn);
-    this.fired = true;
-    switch (arguments.length) {
-      case 0:
-        return this.listener.call(this.target);
-      case 1:
-        return this.listener.call(this.target, arguments[0]);
-      case 2:
-        return this.listener.call(this.target, arguments[0], arguments[1]);
-      case 3:
-        return this.listener.call(this.target, arguments[0], arguments[1],
-            arguments[2]);
-      default:
-        var args = new Array(arguments.length);
-        for (var i = 0; i < args.length; ++i)
-          args[i] = arguments[i];
-        this.listener.apply(this.target, args);
-    }
-  }
-}
-
-function _onceWrap(target, type, listener) {
-  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
-  var wrapped = bind.call(onceWrapper, state);
-  wrapped.listener = listener;
-  state.wrapFn = wrapped;
-  return wrapped;
-}
-
-EventEmitter.prototype.once = function once(type, listener) {
-  if (typeof listener !== 'function')
-    throw new TypeError('"listener" argument must be a function');
-  this.on(type, _onceWrap(this, type, listener));
-  return this;
-};
-
-EventEmitter.prototype.prependOnceListener =
-    function prependOnceListener(type, listener) {
-      if (typeof listener !== 'function')
-        throw new TypeError('"listener" argument must be a function');
-      this.prependListener(type, _onceWrap(this, type, listener));
-      return this;
-    };
-
-// Emits a 'removeListener' event if and only if the listener was removed.
-EventEmitter.prototype.removeListener =
-    function removeListener(type, listener) {
-      var list, events, position, i, originalListener;
-
-      if (typeof listener !== 'function')
-        throw new TypeError('"listener" argument must be a function');
-
-      events = this._events;
-      if (!events)
-        return this;
-
-      list = events[type];
-      if (!list)
-        return this;
-
-      if (list === listener || list.listener === listener) {
-        if (--this._eventsCount === 0)
-          this._events = objectCreate(null);
-        else {
-          delete events[type];
-          if (events.removeListener)
-            this.emit('removeListener', type, list.listener || listener);
-        }
-      } else if (typeof list !== 'function') {
-        position = -1;
-
-        for (i = list.length - 1; i >= 0; i--) {
-          if (list[i] === listener || list[i].listener === listener) {
-            originalListener = list[i].listener;
-            position = i;
-            break;
-          }
-        }
-
-        if (position < 0)
-          return this;
-
-        if (position === 0)
-          list.shift();
-        else
-          spliceOne(list, position);
-
-        if (list.length === 1)
-          events[type] = list[0];
-
-        if (events.removeListener)
-          this.emit('removeListener', type, originalListener || listener);
-      }
-
-      return this;
-    };
-
-EventEmitter.prototype.removeAllListeners =
-    function removeAllListeners(type) {
-      var listeners, events, i;
-
-      events = this._events;
-      if (!events)
-        return this;
-
-      // not listening for removeListener, no need to emit
-      if (!events.removeListener) {
-        if (arguments.length === 0) {
-          this._events = objectCreate(null);
-          this._eventsCount = 0;
-        } else if (events[type]) {
-          if (--this._eventsCount === 0)
-            this._events = objectCreate(null);
-          else
-            delete events[type];
-        }
-        return this;
-      }
-
-      // emit removeListener for all listeners on all events
-      if (arguments.length === 0) {
-        var keys = objectKeys(events);
-        var key;
-        for (i = 0; i < keys.length; ++i) {
-          key = keys[i];
-          if (key === 'removeListener') continue;
-          this.removeAllListeners(key);
-        }
-        this.removeAllListeners('removeListener');
-        this._events = objectCreate(null);
-        this._eventsCount = 0;
-        return this;
-      }
-
-      listeners = events[type];
-
-      if (typeof listeners === 'function') {
-        this.removeListener(type, listeners);
-      } else if (listeners) {
-        // LIFO order
-        for (i = listeners.length - 1; i >= 0; i--) {
-          this.removeListener(type, listeners[i]);
-        }
-      }
-
-      return this;
-    };
-
-function _listeners(target, type, unwrap) {
-  var events = target._events;
-
-  if (!events)
-    return [];
-
-  var evlistener = events[type];
-  if (!evlistener)
-    return [];
-
-  if (typeof evlistener === 'function')
-    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
-
-  return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
-}
-
-EventEmitter.prototype.listeners = function listeners(type) {
-  return _listeners(this, type, true);
-};
-
-EventEmitter.prototype.rawListeners = function rawListeners(type) {
-  return _listeners(this, type, false);
-};
-
-EventEmitter.listenerCount = function(emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-};
-
-EventEmitter.prototype.listenerCount = listenerCount;
-function listenerCount(type) {
-  var events = this._events;
-
-  if (events) {
-    var evlistener = events[type];
-
-    if (typeof evlistener === 'function') {
-      return 1;
-    } else if (evlistener) {
-      return evlistener.length;
-    }
-  }
-
-  return 0;
-}
-
-EventEmitter.prototype.eventNames = function eventNames() {
-  return this._eventsCount > 0 ? Reflect.ownKeys(this._events) : [];
-};
-
-// About 1.5x faster than the two-arg version of Array#splice().
-function spliceOne(list, index) {
-  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1)
-    list[i] = list[k];
-  list.pop();
-}
-
-function arrayClone(arr, n) {
-  var copy = new Array(n);
-  for (var i = 0; i < n; ++i)
-    copy[i] = arr[i];
-  return copy;
-}
-
-function unwrapListeners(arr) {
-  var ret = new Array(arr.length);
-  for (var i = 0; i < ret.length; ++i) {
-    ret[i] = arr[i].listener || arr[i];
-  }
-  return ret;
-}
-
-function objectCreatePolyfill(proto) {
-  var F = function() {};
-  F.prototype = proto;
-  return new F;
-}
-function objectKeysPolyfill(obj) {
-  var keys = [];
-  for (var k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) {
-    keys.push(k);
-  }
-  return k;
-}
-function functionBindPolyfill(context) {
-  var fn = this;
-  return function () {
-    return fn.apply(context, arguments);
-  };
-}
-
-},{}],48:[function(require,module,exports){
-/*
-* loglevel - https://github.com/pimterry/loglevel
-*
-* Copyright (c) 2013 Tim Perry
-* Licensed under the MIT license.
-*/
-(function (root, definition) {
-    "use strict";
-    if (typeof define === 'function' && define.amd) {
-        define(definition);
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = definition();
-    } else {
-        root.log = definition();
-    }
-}(this, function () {
-    "use strict";
-
-    // Slightly dubious tricks to cut down minimized file size
-    var noop = function() {};
-    var undefinedType = "undefined";
-    var isIE = (typeof window !== undefinedType) && (typeof window.navigator !== undefinedType) && (
-        /Trident\/|MSIE /.test(window.navigator.userAgent)
-    );
-
-    var logMethods = [
-        "trace",
-        "debug",
-        "info",
-        "warn",
-        "error"
-    ];
-
-    // Cross-browser bind equivalent that works at least back to IE6
-    function bindMethod(obj, methodName) {
-        var method = obj[methodName];
-        if (typeof method.bind === 'function') {
-            return method.bind(obj);
-        } else {
-            try {
-                return Function.prototype.bind.call(method, obj);
-            } catch (e) {
-                // Missing bind shim or IE8 + Modernizr, fallback to wrapping
-                return function() {
-                    return Function.prototype.apply.apply(method, [obj, arguments]);
-                };
-            }
-        }
-    }
-
-    // Trace() doesn't print the message in IE, so for that case we need to wrap it
-    function traceForIE() {
-        if (console.log) {
-            if (console.log.apply) {
-                console.log.apply(console, arguments);
-            } else {
-                // In old IE, native console methods themselves don't have apply().
-                Function.prototype.apply.apply(console.log, [console, arguments]);
-            }
-        }
-        if (console.trace) console.trace();
-    }
-
-    // Build the best logging method possible for this env
-    // Wherever possible we want to bind, not wrap, to preserve stack traces
-    function realMethod(methodName) {
-        if (methodName === 'debug') {
-            methodName = 'log';
-        }
-
-        if (typeof console === undefinedType) {
-            return false; // No method possible, for now - fixed later by enableLoggingWhenConsoleArrives
-        } else if (methodName === 'trace' && isIE) {
-            return traceForIE;
-        } else if (console[methodName] !== undefined) {
-            return bindMethod(console, methodName);
-        } else if (console.log !== undefined) {
-            return bindMethod(console, 'log');
-        } else {
-            return noop;
-        }
-    }
-
-    // These private functions always need `this` to be set properly
-
-    function replaceLoggingMethods(level, loggerName) {
-        /*jshint validthis:true */
-        for (var i = 0; i < logMethods.length; i++) {
-            var methodName = logMethods[i];
-            this[methodName] = (i < level) ?
-                noop :
-                this.methodFactory(methodName, level, loggerName);
-        }
-
-        // Define log.log as an alias for log.debug
-        this.log = this.debug;
-    }
-
-    // In old IE versions, the console isn't present until you first open it.
-    // We build realMethod() replacements here that regenerate logging methods
-    function enableLoggingWhenConsoleArrives(methodName, level, loggerName) {
-        return function () {
-            if (typeof console !== undefinedType) {
-                replaceLoggingMethods.call(this, level, loggerName);
-                this[methodName].apply(this, arguments);
-            }
-        };
-    }
-
-    // By default, we use closely bound real methods wherever possible, and
-    // otherwise we wait for a console to appear, and then try again.
-    function defaultMethodFactory(methodName, level, loggerName) {
-        /*jshint validthis:true */
-        return realMethod(methodName) ||
-               enableLoggingWhenConsoleArrives.apply(this, arguments);
-    }
-
-    function Logger(name, defaultLevel, factory) {
-      var self = this;
-      var currentLevel;
-      var storageKey = "loglevel";
-      if (name) {
-        storageKey += ":" + name;
-      }
-
-      function persistLevelIfPossible(levelNum) {
-          var levelName = (logMethods[levelNum] || 'silent').toUpperCase();
-
-          if (typeof window === undefinedType) return;
-
-          // Use localStorage if available
-          try {
-              window.localStorage[storageKey] = levelName;
-              return;
-          } catch (ignore) {}
-
-          // Use session cookie as fallback
-          try {
-              window.document.cookie =
-                encodeURIComponent(storageKey) + "=" + levelName + ";";
-          } catch (ignore) {}
-      }
-
-      function getPersistedLevel() {
-          var storedLevel;
-
-          if (typeof window === undefinedType) return;
-
-          try {
-              storedLevel = window.localStorage[storageKey];
-          } catch (ignore) {}
-
-          // Fallback to cookies if local storage gives us nothing
-          if (typeof storedLevel === undefinedType) {
-              try {
-                  var cookie = window.document.cookie;
-                  var location = cookie.indexOf(
-                      encodeURIComponent(storageKey) + "=");
-                  if (location !== -1) {
-                      storedLevel = /^([^;]+)/.exec(cookie.slice(location))[1];
-                  }
-              } catch (ignore) {}
-          }
-
-          // If the stored level is not valid, treat it as if nothing was stored.
-          if (self.levels[storedLevel] === undefined) {
-              storedLevel = undefined;
-          }
-
-          return storedLevel;
-      }
-
-      /*
-       *
-       * Public logger API - see https://github.com/pimterry/loglevel for details
-       *
-       */
-
-      self.name = name;
-
-      self.levels = { "TRACE": 0, "DEBUG": 1, "INFO": 2, "WARN": 3,
-          "ERROR": 4, "SILENT": 5};
-
-      self.methodFactory = factory || defaultMethodFactory;
-
-      self.getLevel = function () {
-          return currentLevel;
-      };
-
-      self.setLevel = function (level, persist) {
-          if (typeof level === "string" && self.levels[level.toUpperCase()] !== undefined) {
-              level = self.levels[level.toUpperCase()];
-          }
-          if (typeof level === "number" && level >= 0 && level <= self.levels.SILENT) {
-              currentLevel = level;
-              if (persist !== false) {  // defaults to true
-                  persistLevelIfPossible(level);
-              }
-              replaceLoggingMethods.call(self, level, name);
-              if (typeof console === undefinedType && level < self.levels.SILENT) {
-                  return "No console available for logging";
-              }
-          } else {
-              throw "log.setLevel() called with invalid level: " + level;
-          }
-      };
-
-      self.setDefaultLevel = function (level) {
-          if (!getPersistedLevel()) {
-              self.setLevel(level, false);
-          }
-      };
-
-      self.enableAll = function(persist) {
-          self.setLevel(self.levels.TRACE, persist);
-      };
-
-      self.disableAll = function(persist) {
-          self.setLevel(self.levels.SILENT, persist);
-      };
-
-      // Initialize with the right level
-      var initialLevel = getPersistedLevel();
-      if (initialLevel == null) {
-          initialLevel = defaultLevel == null ? "WARN" : defaultLevel;
-      }
-      self.setLevel(initialLevel, false);
-    }
-
-    /*
-     *
-     * Top-level API
-     *
-     */
-
-    var defaultLogger = new Logger();
-
-    var _loggersByName = {};
-    defaultLogger.getLogger = function getLogger(name) {
-        if (typeof name !== "string" || name === "") {
-          throw new TypeError("You must supply a name when creating a logger.");
-        }
-
-        var logger = _loggersByName[name];
-        if (!logger) {
-          logger = _loggersByName[name] = new Logger(
-            name, defaultLogger.getLevel(), defaultLogger.methodFactory);
-        }
-        return logger;
-    };
-
-    // Grab the current global log variable in case of overwrite
-    var _log = (typeof window !== undefinedType) ? window.log : undefined;
-    defaultLogger.noConflict = function() {
-        if (typeof window !== undefinedType &&
-               window.log === defaultLogger) {
-            window.log = _log;
-        }
-
-        return defaultLogger;
-    };
-
-    defaultLogger.getLoggers = function getLoggers() {
-        return _loggersByName;
-    };
-
-    return defaultLogger;
-}));
-
-},{}],49:[function(require,module,exports){
-/*
- * Copyright (c) 2012 Mathieu Turcotte
- * Licensed under the MIT license.
- */
-
-module.exports = require('./lib/checks');
-},{"./lib/checks":50}],50:[function(require,module,exports){
-/*
- * Copyright (c) 2012 Mathieu Turcotte
- * Licensed under the MIT license.
- */
-
-var util = require('util');
-
-var errors = module.exports = require('./errors');
-
-function failCheck(ExceptionConstructor, callee, messageFormat, formatArgs) {
-    messageFormat = messageFormat || '';
-    var message = util.format.apply(this, [messageFormat].concat(formatArgs));
-    var error = new ExceptionConstructor(message);
-    Error.captureStackTrace(error, callee);
-    throw error;
-}
-
-function failArgumentCheck(callee, message, formatArgs) {
-    failCheck(errors.IllegalArgumentError, callee, message, formatArgs);
-}
-
-function failStateCheck(callee, message, formatArgs) {
-    failCheck(errors.IllegalStateError, callee, message, formatArgs);
-}
-
-module.exports.checkArgument = function(value, message) {
-    if (!value) {
-        failArgumentCheck(arguments.callee, message,
-            Array.prototype.slice.call(arguments, 2));
-    }
-};
-
-module.exports.checkState = function(value, message) {
-    if (!value) {
-        failStateCheck(arguments.callee, message,
-            Array.prototype.slice.call(arguments, 2));
-    }
-};
-
-module.exports.checkIsDef = function(value, message) {
-    if (value !== undefined) {
-        return value;
-    }
-
-    failArgumentCheck(arguments.callee, message ||
-        'Expected value to be defined but was undefined.',
-        Array.prototype.slice.call(arguments, 2));
-};
-
-module.exports.checkIsDefAndNotNull = function(value, message) {
-    // Note that undefined == null.
-    if (value != null) {
-        return value;
-    }
-
-    failArgumentCheck(arguments.callee, message ||
-        'Expected value to be defined and not null but got "' +
-        typeOf(value) + '".', Array.prototype.slice.call(arguments, 2));
-};
-
-// Fixed version of the typeOf operator which returns 'null' for null values
-// and 'array' for arrays.
-function typeOf(value) {
-    var s = typeof value;
-    if (s == 'object') {
-        if (!value) {
-            return 'null';
-        } else if (value instanceof Array) {
-            return 'array';
-        }
-    }
-    return s;
-}
-
-function typeCheck(expect) {
-    return function(value, message) {
-        var type = typeOf(value);
-
-        if (type == expect) {
-            return value;
-        }
-
-        failArgumentCheck(arguments.callee, message ||
-            'Expected "' + expect + '" but got "' + type + '".',
-            Array.prototype.slice.call(arguments, 2));
-    };
-}
-
-module.exports.checkIsString = typeCheck('string');
-module.exports.checkIsArray = typeCheck('array');
-module.exports.checkIsNumber = typeCheck('number');
-module.exports.checkIsBoolean = typeCheck('boolean');
-module.exports.checkIsFunction = typeCheck('function');
-module.exports.checkIsObject = typeCheck('object');
-
-},{"./errors":51,"util":59}],51:[function(require,module,exports){
-/*
- * Copyright (c) 2012 Mathieu Turcotte
- * Licensed under the MIT license.
- */
-
-var util = require('util');
-
-function IllegalArgumentError(message) {
-    Error.call(this, message);
-    this.message = message;
-}
-util.inherits(IllegalArgumentError, Error);
-
-IllegalArgumentError.prototype.name = 'IllegalArgumentError';
-
-function IllegalStateError(message) {
-    Error.call(this, message);
-    this.message = message;
-}
-util.inherits(IllegalStateError, Error);
-
-IllegalStateError.prototype.name = 'IllegalStateError';
-
-module.exports.IllegalStateError = IllegalStateError;
-module.exports.IllegalArgumentError = IllegalArgumentError;
-},{"util":59}],52:[function(require,module,exports){
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-},{}],53:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -11421,7 +9863,7 @@ if (hadRuntime) {
   }
 }
 
-},{"./runtime":54}],54:[function(require,module,exports){
+},{"./runtime":41}],41:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -12150,7 +10592,2189 @@ if (hadRuntime) {
   (function() { return this })() || Function("return this")()
 );
 
-},{}],55:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
+module.exports = require("regenerator-runtime");
+
+},{"regenerator-runtime":40}],43:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var Backoff = require('./lib/backoff');
+var ExponentialBackoffStrategy = require('./lib/strategy/exponential');
+var FibonacciBackoffStrategy = require('./lib/strategy/fibonacci');
+var FunctionCall = require('./lib/function_call.js');
+
+module.exports.Backoff = Backoff;
+module.exports.FunctionCall = FunctionCall;
+module.exports.FibonacciStrategy = FibonacciBackoffStrategy;
+module.exports.ExponentialStrategy = ExponentialBackoffStrategy;
+
+// Constructs a Fibonacci backoff.
+module.exports.fibonacci = function(options) {
+    return new Backoff(new FibonacciBackoffStrategy(options));
+};
+
+// Constructs an exponential backoff.
+module.exports.exponential = function(options) {
+    return new Backoff(new ExponentialBackoffStrategy(options));
+};
+
+// Constructs a FunctionCall for the given function and arguments.
+module.exports.call = function(fn, vargs, callback) {
+    var args = Array.prototype.slice.call(arguments);
+    fn = args[0];
+    vargs = args.slice(1, args.length - 1);
+    callback = args[args.length - 1];
+    return new FunctionCall(fn, vargs, callback);
+};
+
+},{"./lib/backoff":44,"./lib/function_call.js":45,"./lib/strategy/exponential":46,"./lib/strategy/fibonacci":47}],44:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var events = require('events');
+var precond = require('precond');
+var util = require('util');
+
+// A class to hold the state of a backoff operation. Accepts a backoff strategy
+// to generate the backoff delays.
+function Backoff(backoffStrategy) {
+    events.EventEmitter.call(this);
+
+    this.backoffStrategy_ = backoffStrategy;
+    this.maxNumberOfRetry_ = -1;
+    this.backoffNumber_ = 0;
+    this.backoffDelay_ = 0;
+    this.timeoutID_ = -1;
+
+    this.handlers = {
+        backoff: this.onBackoff_.bind(this)
+    };
+}
+util.inherits(Backoff, events.EventEmitter);
+
+// Sets a limit, greater than 0, on the maximum number of backoffs. A 'fail'
+// event will be emitted when the limit is reached.
+Backoff.prototype.failAfter = function(maxNumberOfRetry) {
+    precond.checkArgument(maxNumberOfRetry > 0,
+        'Expected a maximum number of retry greater than 0 but got %s.',
+        maxNumberOfRetry);
+
+    this.maxNumberOfRetry_ = maxNumberOfRetry;
+};
+
+// Starts a backoff operation. Accepts an optional parameter to let the
+// listeners know why the backoff operation was started.
+Backoff.prototype.backoff = function(err) {
+    precond.checkState(this.timeoutID_ === -1, 'Backoff in progress.');
+
+    if (this.backoffNumber_ === this.maxNumberOfRetry_) {
+        this.emit('fail', err);
+        this.reset();
+    } else {
+        this.backoffDelay_ = this.backoffStrategy_.next();
+        this.timeoutID_ = setTimeout(this.handlers.backoff, this.backoffDelay_);
+        this.emit('backoff', this.backoffNumber_, this.backoffDelay_, err);
+    }
+};
+
+// Handles the backoff timeout completion.
+Backoff.prototype.onBackoff_ = function() {
+    this.timeoutID_ = -1;
+    this.emit('ready', this.backoffNumber_, this.backoffDelay_);
+    this.backoffNumber_++;
+};
+
+// Stops any backoff operation and resets the backoff delay to its inital value.
+Backoff.prototype.reset = function() {
+    this.backoffNumber_ = 0;
+    this.backoffStrategy_.reset();
+    clearTimeout(this.timeoutID_);
+    this.timeoutID_ = -1;
+};
+
+module.exports = Backoff;
+
+},{"events":52,"precond":54,"util":51}],45:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var events = require('events');
+var precond = require('precond');
+var util = require('util');
+
+var Backoff = require('./backoff');
+var FibonacciBackoffStrategy = require('./strategy/fibonacci');
+
+// Wraps a function to be called in a backoff loop.
+function FunctionCall(fn, args, callback) {
+    events.EventEmitter.call(this);
+
+    precond.checkIsFunction(fn, 'Expected fn to be a function.');
+    precond.checkIsArray(args, 'Expected args to be an array.');
+    precond.checkIsFunction(callback, 'Expected callback to be a function.');
+
+    this.function_ = fn;
+    this.arguments_ = args;
+    this.callback_ = callback;
+    this.lastResult_ = [];
+    this.numRetries_ = 0;
+
+    this.backoff_ = null;
+    this.strategy_ = null;
+    this.failAfter_ = -1;
+    this.retryPredicate_ = FunctionCall.DEFAULT_RETRY_PREDICATE_;
+
+    this.state_ = FunctionCall.State_.PENDING;
+}
+util.inherits(FunctionCall, events.EventEmitter);
+
+// States in which the call can be.
+FunctionCall.State_ = {
+    // Call isn't started yet.
+    PENDING: 0,
+    // Call is in progress.
+    RUNNING: 1,
+    // Call completed successfully which means that either the wrapped function
+    // returned successfully or the maximal number of backoffs was reached.
+    COMPLETED: 2,
+    // The call was aborted.
+    ABORTED: 3
+};
+
+// The default retry predicate which considers any error as retriable.
+FunctionCall.DEFAULT_RETRY_PREDICATE_ = function(err) {
+  return true;
+};
+
+// Checks whether the call is pending.
+FunctionCall.prototype.isPending = function() {
+    return this.state_ == FunctionCall.State_.PENDING;
+};
+
+// Checks whether the call is in progress.
+FunctionCall.prototype.isRunning = function() {
+    return this.state_ == FunctionCall.State_.RUNNING;
+};
+
+// Checks whether the call is completed.
+FunctionCall.prototype.isCompleted = function() {
+    return this.state_ == FunctionCall.State_.COMPLETED;
+};
+
+// Checks whether the call is aborted.
+FunctionCall.prototype.isAborted = function() {
+    return this.state_ == FunctionCall.State_.ABORTED;
+};
+
+// Sets the backoff strategy to use. Can only be called before the call is
+// started otherwise an exception will be thrown.
+FunctionCall.prototype.setStrategy = function(strategy) {
+    precond.checkState(this.isPending(), 'FunctionCall in progress.');
+    this.strategy_ = strategy;
+    return this; // Return this for chaining.
+};
+
+// Sets the predicate which will be used to determine whether the errors
+// returned from the wrapped function should be retried or not, e.g. a
+// network error would be retriable while a type error would stop the
+// function call.
+FunctionCall.prototype.retryIf = function(retryPredicate) {
+    precond.checkState(this.isPending(), 'FunctionCall in progress.');
+    this.retryPredicate_ = retryPredicate;
+    return this;
+};
+
+// Returns all intermediary results returned by the wrapped function since
+// the initial call.
+FunctionCall.prototype.getLastResult = function() {
+    return this.lastResult_.concat();
+};
+
+// Returns the number of times the wrapped function call was retried.
+FunctionCall.prototype.getNumRetries = function() {
+    return this.numRetries_;
+};
+
+// Sets the backoff limit.
+FunctionCall.prototype.failAfter = function(maxNumberOfRetry) {
+    precond.checkState(this.isPending(), 'FunctionCall in progress.');
+    this.failAfter_ = maxNumberOfRetry;
+    return this; // Return this for chaining.
+};
+
+// Aborts the call.
+FunctionCall.prototype.abort = function() {
+    if (this.isCompleted() || this.isAborted()) {
+      return;
+    }
+
+    if (this.isRunning()) {
+        this.backoff_.reset();
+    }
+
+    this.state_ = FunctionCall.State_.ABORTED;
+    this.lastResult_ = [new Error('Backoff aborted.')];
+    this.emit('abort');
+    this.doCallback_();
+};
+
+// Initiates the call to the wrapped function. Accepts an optional factory
+// function used to create the backoff instance; used when testing.
+FunctionCall.prototype.start = function(backoffFactory) {
+    precond.checkState(!this.isAborted(), 'FunctionCall is aborted.');
+    precond.checkState(this.isPending(), 'FunctionCall already started.');
+
+    var strategy = this.strategy_ || new FibonacciBackoffStrategy();
+
+    this.backoff_ = backoffFactory ?
+        backoffFactory(strategy) :
+        new Backoff(strategy);
+
+    this.backoff_.on('ready', this.doCall_.bind(this, true /* isRetry */));
+    this.backoff_.on('fail', this.doCallback_.bind(this));
+    this.backoff_.on('backoff', this.handleBackoff_.bind(this));
+
+    if (this.failAfter_ > 0) {
+        this.backoff_.failAfter(this.failAfter_);
+    }
+
+    this.state_ = FunctionCall.State_.RUNNING;
+    this.doCall_(false /* isRetry */);
+};
+
+// Calls the wrapped function.
+FunctionCall.prototype.doCall_ = function(isRetry) {
+    if (isRetry) {
+        this.numRetries_++;
+    }
+    var eventArgs = ['call'].concat(this.arguments_);
+    events.EventEmitter.prototype.emit.apply(this, eventArgs);
+    var callback = this.handleFunctionCallback_.bind(this);
+    this.function_.apply(null, this.arguments_.concat(callback));
+};
+
+// Calls the wrapped function's callback with the last result returned by the
+// wrapped function.
+FunctionCall.prototype.doCallback_ = function() {
+    this.callback_.apply(null, this.lastResult_);
+};
+
+// Handles wrapped function's completion. This method acts as a replacement
+// for the original callback function.
+FunctionCall.prototype.handleFunctionCallback_ = function() {
+    if (this.isAborted()) {
+        return;
+    }
+
+    var args = Array.prototype.slice.call(arguments);
+    this.lastResult_ = args; // Save last callback arguments.
+    events.EventEmitter.prototype.emit.apply(this, ['callback'].concat(args));
+
+    var err = args[0];
+    if (err && this.retryPredicate_(err)) {
+        this.backoff_.backoff(err);
+    } else {
+        this.state_ = FunctionCall.State_.COMPLETED;
+        this.doCallback_();
+    }
+};
+
+// Handles the backoff event by reemitting it.
+FunctionCall.prototype.handleBackoff_ = function(number, delay, err) {
+    this.emit('backoff', number, delay, err);
+};
+
+module.exports = FunctionCall;
+
+},{"./backoff":44,"./strategy/fibonacci":47,"events":52,"precond":54,"util":51}],46:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var util = require('util');
+var precond = require('precond');
+
+var BackoffStrategy = require('./strategy');
+
+// Exponential backoff strategy.
+function ExponentialBackoffStrategy(options) {
+    BackoffStrategy.call(this, options);
+    this.backoffDelay_ = 0;
+    this.nextBackoffDelay_ = this.getInitialDelay();
+    this.factor_ = ExponentialBackoffStrategy.DEFAULT_FACTOR;
+
+    if (options && options.factor !== undefined) {
+        precond.checkArgument(options.factor > 1,
+            'Exponential factor should be greater than 1 but got %s.',
+            options.factor);
+        this.factor_ = options.factor;
+    }
+}
+util.inherits(ExponentialBackoffStrategy, BackoffStrategy);
+
+// Default multiplication factor used to compute the next backoff delay from
+// the current one. The value can be overridden by passing a custom factor as
+// part of the options.
+ExponentialBackoffStrategy.DEFAULT_FACTOR = 2;
+
+ExponentialBackoffStrategy.prototype.next_ = function() {
+    this.backoffDelay_ = Math.min(this.nextBackoffDelay_, this.getMaxDelay());
+    this.nextBackoffDelay_ = this.backoffDelay_ * this.factor_;
+    return this.backoffDelay_;
+};
+
+ExponentialBackoffStrategy.prototype.reset_ = function() {
+    this.backoffDelay_ = 0;
+    this.nextBackoffDelay_ = this.getInitialDelay();
+};
+
+module.exports = ExponentialBackoffStrategy;
+
+},{"./strategy":48,"precond":54,"util":51}],47:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var util = require('util');
+
+var BackoffStrategy = require('./strategy');
+
+// Fibonacci backoff strategy.
+function FibonacciBackoffStrategy(options) {
+    BackoffStrategy.call(this, options);
+    this.backoffDelay_ = 0;
+    this.nextBackoffDelay_ = this.getInitialDelay();
+}
+util.inherits(FibonacciBackoffStrategy, BackoffStrategy);
+
+FibonacciBackoffStrategy.prototype.next_ = function() {
+    var backoffDelay = Math.min(this.nextBackoffDelay_, this.getMaxDelay());
+    this.nextBackoffDelay_ += this.backoffDelay_;
+    this.backoffDelay_ = backoffDelay;
+    return backoffDelay;
+};
+
+FibonacciBackoffStrategy.prototype.reset_ = function() {
+    this.nextBackoffDelay_ = this.getInitialDelay();
+    this.backoffDelay_ = 0;
+};
+
+module.exports = FibonacciBackoffStrategy;
+
+},{"./strategy":48,"util":51}],48:[function(require,module,exports){
+//      Copyright (c) 2012 Mathieu Turcotte
+//      Licensed under the MIT license.
+
+var events = require('events');
+var util = require('util');
+
+function isDef(value) {
+    return value !== undefined && value !== null;
+}
+
+// Abstract class defining the skeleton for the backoff strategies. Accepts an
+// object holding the options for the backoff strategy:
+//
+//  * `randomisationFactor`: The randomisation factor which must be between 0
+//     and 1 where 1 equates to a randomization factor of 100% and 0 to no
+//     randomization.
+//  * `initialDelay`: The backoff initial delay in milliseconds.
+//  * `maxDelay`: The backoff maximal delay in milliseconds.
+function BackoffStrategy(options) {
+    options = options || {};
+
+    if (isDef(options.initialDelay) && options.initialDelay < 1) {
+        throw new Error('The initial timeout must be greater than 0.');
+    } else if (isDef(options.maxDelay) && options.maxDelay < 1) {
+        throw new Error('The maximal timeout must be greater than 0.');
+    }
+
+    this.initialDelay_ = options.initialDelay || 100;
+    this.maxDelay_ = options.maxDelay || 10000;
+
+    if (this.maxDelay_ <= this.initialDelay_) {
+        throw new Error('The maximal backoff delay must be ' +
+                        'greater than the initial backoff delay.');
+    }
+
+    if (isDef(options.randomisationFactor) &&
+        (options.randomisationFactor < 0 || options.randomisationFactor > 1)) {
+        throw new Error('The randomisation factor must be between 0 and 1.');
+    }
+
+    this.randomisationFactor_ = options.randomisationFactor || 0;
+}
+
+// Gets the maximal backoff delay.
+BackoffStrategy.prototype.getMaxDelay = function() {
+    return this.maxDelay_;
+};
+
+// Gets the initial backoff delay.
+BackoffStrategy.prototype.getInitialDelay = function() {
+    return this.initialDelay_;
+};
+
+// Template method that computes and returns the next backoff delay in
+// milliseconds.
+BackoffStrategy.prototype.next = function() {
+    var backoffDelay = this.next_();
+    var randomisationMultiple = 1 + Math.random() * this.randomisationFactor_;
+    var randomizedDelay = Math.round(backoffDelay * randomisationMultiple);
+    return randomizedDelay;
+};
+
+// Computes and returns the next backoff delay. Intended to be overridden by
+// subclasses.
+BackoffStrategy.prototype.next_ = function() {
+    throw new Error('BackoffStrategy.next_() unimplemented.');
+};
+
+// Template method that resets the backoff delay to its initial value.
+BackoffStrategy.prototype.reset = function() {
+    this.reset_();
+};
+
+// Resets the backoff delay to its initial value. Intended to be overridden by
+// subclasses.
+BackoffStrategy.prototype.reset_ = function() {
+    throw new Error('BackoffStrategy.reset_() unimplemented.');
+};
+
+module.exports = BackoffStrategy;
+
+},{"events":52,"util":51}],49:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],50:[function(require,module,exports){
+module.exports = function isBuffer(arg) {
+  return arg && typeof arg === 'object'
+    && typeof arg.copy === 'function'
+    && typeof arg.fill === 'function'
+    && typeof arg.readUInt8 === 'function';
+}
+},{}],51:[function(require,module,exports){
+(function (process,global){(function (){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+var formatRegExp = /%[sdj%]/g;
+exports.format = function(f) {
+  if (!isString(f)) {
+    var objects = [];
+    for (var i = 0; i < arguments.length; i++) {
+      objects.push(inspect(arguments[i]));
+    }
+    return objects.join(' ');
+  }
+
+  var i = 1;
+  var args = arguments;
+  var len = args.length;
+  var str = String(f).replace(formatRegExp, function(x) {
+    if (x === '%%') return '%';
+    if (i >= len) return x;
+    switch (x) {
+      case '%s': return String(args[i++]);
+      case '%d': return Number(args[i++]);
+      case '%j':
+        try {
+          return JSON.stringify(args[i++]);
+        } catch (_) {
+          return '[Circular]';
+        }
+      default:
+        return x;
+    }
+  });
+  for (var x = args[i]; i < len; x = args[++i]) {
+    if (isNull(x) || !isObject(x)) {
+      str += ' ' + x;
+    } else {
+      str += ' ' + inspect(x);
+    }
+  }
+  return str;
+};
+
+
+// Mark that a method should not be used.
+// Returns a modified function which warns once by default.
+// If --no-deprecation is set, then it is a no-op.
+exports.deprecate = function(fn, msg) {
+  // Allow for deprecating things in the process of starting up.
+  if (isUndefined(global.process)) {
+    return function() {
+      return exports.deprecate(fn, msg).apply(this, arguments);
+    };
+  }
+
+  if (process.noDeprecation === true) {
+    return fn;
+  }
+
+  var warned = false;
+  function deprecated() {
+    if (!warned) {
+      if (process.throwDeprecation) {
+        throw new Error(msg);
+      } else if (process.traceDeprecation) {
+        console.trace(msg);
+      } else {
+        console.error(msg);
+      }
+      warned = true;
+    }
+    return fn.apply(this, arguments);
+  }
+
+  return deprecated;
+};
+
+
+var debugs = {};
+var debugEnviron;
+exports.debuglog = function(set) {
+  if (isUndefined(debugEnviron))
+    debugEnviron = process.env.NODE_DEBUG || '';
+  set = set.toUpperCase();
+  if (!debugs[set]) {
+    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
+      var pid = process.pid;
+      debugs[set] = function() {
+        var msg = exports.format.apply(exports, arguments);
+        console.error('%s %d: %s', set, pid, msg);
+      };
+    } else {
+      debugs[set] = function() {};
+    }
+  }
+  return debugs[set];
+};
+
+
+/**
+ * Echos the value of a value. Trys to print the value out
+ * in the best way possible given the different types.
+ *
+ * @param {Object} obj The object to print out.
+ * @param {Object} opts Optional options object that alters the output.
+ */
+/* legacy: obj, showHidden, depth, colors*/
+function inspect(obj, opts) {
+  // default options
+  var ctx = {
+    seen: [],
+    stylize: stylizeNoColor
+  };
+  // legacy...
+  if (arguments.length >= 3) ctx.depth = arguments[2];
+  if (arguments.length >= 4) ctx.colors = arguments[3];
+  if (isBoolean(opts)) {
+    // legacy...
+    ctx.showHidden = opts;
+  } else if (opts) {
+    // got an "options" object
+    exports._extend(ctx, opts);
+  }
+  // set default options
+  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
+  if (isUndefined(ctx.depth)) ctx.depth = 2;
+  if (isUndefined(ctx.colors)) ctx.colors = false;
+  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
+  if (ctx.colors) ctx.stylize = stylizeWithColor;
+  return formatValue(ctx, obj, ctx.depth);
+}
+exports.inspect = inspect;
+
+
+// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
+inspect.colors = {
+  'bold' : [1, 22],
+  'italic' : [3, 23],
+  'underline' : [4, 24],
+  'inverse' : [7, 27],
+  'white' : [37, 39],
+  'grey' : [90, 39],
+  'black' : [30, 39],
+  'blue' : [34, 39],
+  'cyan' : [36, 39],
+  'green' : [32, 39],
+  'magenta' : [35, 39],
+  'red' : [31, 39],
+  'yellow' : [33, 39]
+};
+
+// Don't use 'blue' not visible on cmd.exe
+inspect.styles = {
+  'special': 'cyan',
+  'number': 'yellow',
+  'boolean': 'yellow',
+  'undefined': 'grey',
+  'null': 'bold',
+  'string': 'green',
+  'date': 'magenta',
+  // "name": intentionally not styling
+  'regexp': 'red'
+};
+
+
+function stylizeWithColor(str, styleType) {
+  var style = inspect.styles[styleType];
+
+  if (style) {
+    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
+           '\u001b[' + inspect.colors[style][1] + 'm';
+  } else {
+    return str;
+  }
+}
+
+
+function stylizeNoColor(str, styleType) {
+  return str;
+}
+
+
+function arrayToHash(array) {
+  var hash = {};
+
+  array.forEach(function(val, idx) {
+    hash[val] = true;
+  });
+
+  return hash;
+}
+
+
+function formatValue(ctx, value, recurseTimes) {
+  // Provide a hook for user-specified inspect functions.
+  // Check that value is an object with an inspect function on it
+  if (ctx.customInspect &&
+      value &&
+      isFunction(value.inspect) &&
+      // Filter out the util module, it's inspect function is special
+      value.inspect !== exports.inspect &&
+      // Also filter out any prototype objects using the circular check.
+      !(value.constructor && value.constructor.prototype === value)) {
+    var ret = value.inspect(recurseTimes, ctx);
+    if (!isString(ret)) {
+      ret = formatValue(ctx, ret, recurseTimes);
+    }
+    return ret;
+  }
+
+  // Primitive types cannot have properties
+  var primitive = formatPrimitive(ctx, value);
+  if (primitive) {
+    return primitive;
+  }
+
+  // Look up the keys of the object.
+  var keys = Object.keys(value);
+  var visibleKeys = arrayToHash(keys);
+
+  if (ctx.showHidden) {
+    keys = Object.getOwnPropertyNames(value);
+  }
+
+  // IE doesn't make error fields non-enumerable
+  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
+  if (isError(value)
+      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
+    return formatError(value);
+  }
+
+  // Some type of object without properties can be shortcutted.
+  if (keys.length === 0) {
+    if (isFunction(value)) {
+      var name = value.name ? ': ' + value.name : '';
+      return ctx.stylize('[Function' + name + ']', 'special');
+    }
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+    }
+    if (isDate(value)) {
+      return ctx.stylize(Date.prototype.toString.call(value), 'date');
+    }
+    if (isError(value)) {
+      return formatError(value);
+    }
+  }
+
+  var base = '', array = false, braces = ['{', '}'];
+
+  // Make Array say that they are Array
+  if (isArray(value)) {
+    array = true;
+    braces = ['[', ']'];
+  }
+
+  // Make functions say that they are functions
+  if (isFunction(value)) {
+    var n = value.name ? ': ' + value.name : '';
+    base = ' [Function' + n + ']';
+  }
+
+  // Make RegExps say that they are RegExps
+  if (isRegExp(value)) {
+    base = ' ' + RegExp.prototype.toString.call(value);
+  }
+
+  // Make dates with properties first say the date
+  if (isDate(value)) {
+    base = ' ' + Date.prototype.toUTCString.call(value);
+  }
+
+  // Make error with message first say the error
+  if (isError(value)) {
+    base = ' ' + formatError(value);
+  }
+
+  if (keys.length === 0 && (!array || value.length == 0)) {
+    return braces[0] + base + braces[1];
+  }
+
+  if (recurseTimes < 0) {
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+    } else {
+      return ctx.stylize('[Object]', 'special');
+    }
+  }
+
+  ctx.seen.push(value);
+
+  var output;
+  if (array) {
+    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
+  } else {
+    output = keys.map(function(key) {
+      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
+    });
+  }
+
+  ctx.seen.pop();
+
+  return reduceToSingleString(output, base, braces);
+}
+
+
+function formatPrimitive(ctx, value) {
+  if (isUndefined(value))
+    return ctx.stylize('undefined', 'undefined');
+  if (isString(value)) {
+    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
+                                             .replace(/'/g, "\\'")
+                                             .replace(/\\"/g, '"') + '\'';
+    return ctx.stylize(simple, 'string');
+  }
+  if (isNumber(value))
+    return ctx.stylize('' + value, 'number');
+  if (isBoolean(value))
+    return ctx.stylize('' + value, 'boolean');
+  // For some reason typeof null is "object", so special case here.
+  if (isNull(value))
+    return ctx.stylize('null', 'null');
+}
+
+
+function formatError(value) {
+  return '[' + Error.prototype.toString.call(value) + ']';
+}
+
+
+function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
+  var output = [];
+  for (var i = 0, l = value.length; i < l; ++i) {
+    if (hasOwnProperty(value, String(i))) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
+          String(i), true));
+    } else {
+      output.push('');
+    }
+  }
+  keys.forEach(function(key) {
+    if (!key.match(/^\d+$/)) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
+          key, true));
+    }
+  });
+  return output;
+}
+
+
+function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
+  var name, str, desc;
+  desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
+  if (desc.get) {
+    if (desc.set) {
+      str = ctx.stylize('[Getter/Setter]', 'special');
+    } else {
+      str = ctx.stylize('[Getter]', 'special');
+    }
+  } else {
+    if (desc.set) {
+      str = ctx.stylize('[Setter]', 'special');
+    }
+  }
+  if (!hasOwnProperty(visibleKeys, key)) {
+    name = '[' + key + ']';
+  }
+  if (!str) {
+    if (ctx.seen.indexOf(desc.value) < 0) {
+      if (isNull(recurseTimes)) {
+        str = formatValue(ctx, desc.value, null);
+      } else {
+        str = formatValue(ctx, desc.value, recurseTimes - 1);
+      }
+      if (str.indexOf('\n') > -1) {
+        if (array) {
+          str = str.split('\n').map(function(line) {
+            return '  ' + line;
+          }).join('\n').substr(2);
+        } else {
+          str = '\n' + str.split('\n').map(function(line) {
+            return '   ' + line;
+          }).join('\n');
+        }
+      }
+    } else {
+      str = ctx.stylize('[Circular]', 'special');
+    }
+  }
+  if (isUndefined(name)) {
+    if (array && key.match(/^\d+$/)) {
+      return str;
+    }
+    name = JSON.stringify('' + key);
+    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+      name = name.substr(1, name.length - 2);
+      name = ctx.stylize(name, 'name');
+    } else {
+      name = name.replace(/'/g, "\\'")
+                 .replace(/\\"/g, '"')
+                 .replace(/(^"|"$)/g, "'");
+      name = ctx.stylize(name, 'string');
+    }
+  }
+
+  return name + ': ' + str;
+}
+
+
+function reduceToSingleString(output, base, braces) {
+  var numLinesEst = 0;
+  var length = output.reduce(function(prev, cur) {
+    numLinesEst++;
+    if (cur.indexOf('\n') >= 0) numLinesEst++;
+    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
+  }, 0);
+
+  if (length > 60) {
+    return braces[0] +
+           (base === '' ? '' : base + '\n ') +
+           ' ' +
+           output.join(',\n  ') +
+           ' ' +
+           braces[1];
+  }
+
+  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
+}
+
+
+// NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+function isArray(ar) {
+  return Array.isArray(ar);
+}
+exports.isArray = isArray;
+
+function isBoolean(arg) {
+  return typeof arg === 'boolean';
+}
+exports.isBoolean = isBoolean;
+
+function isNull(arg) {
+  return arg === null;
+}
+exports.isNull = isNull;
+
+function isNullOrUndefined(arg) {
+  return arg == null;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+exports.isNumber = isNumber;
+
+function isString(arg) {
+  return typeof arg === 'string';
+}
+exports.isString = isString;
+
+function isSymbol(arg) {
+  return typeof arg === 'symbol';
+}
+exports.isSymbol = isSymbol;
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+exports.isUndefined = isUndefined;
+
+function isRegExp(re) {
+  return isObject(re) && objectToString(re) === '[object RegExp]';
+}
+exports.isRegExp = isRegExp;
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+exports.isObject = isObject;
+
+function isDate(d) {
+  return isObject(d) && objectToString(d) === '[object Date]';
+}
+exports.isDate = isDate;
+
+function isError(e) {
+  return isObject(e) &&
+      (objectToString(e) === '[object Error]' || e instanceof Error);
+}
+exports.isError = isError;
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+exports.isFunction = isFunction;
+
+function isPrimitive(arg) {
+  return arg === null ||
+         typeof arg === 'boolean' ||
+         typeof arg === 'number' ||
+         typeof arg === 'string' ||
+         typeof arg === 'symbol' ||  // ES6 symbol
+         typeof arg === 'undefined';
+}
+exports.isPrimitive = isPrimitive;
+
+exports.isBuffer = require('./support/isBuffer');
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+
+function pad(n) {
+  return n < 10 ? '0' + n.toString(10) : n.toString(10);
+}
+
+
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+              'Oct', 'Nov', 'Dec'];
+
+// 26 Feb 16:19:34
+function timestamp() {
+  var d = new Date();
+  var time = [pad(d.getHours()),
+              pad(d.getMinutes()),
+              pad(d.getSeconds())].join(':');
+  return [d.getDate(), months[d.getMonth()], time].join(' ');
+}
+
+
+// log is just a thin wrapper to console.log that prepends a timestamp
+exports.log = function() {
+  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
+};
+
+
+/**
+ * Inherit the prototype methods from one constructor into another.
+ *
+ * The Function.prototype.inherits from lang.js rewritten as a standalone
+ * function (not on Function.prototype). NOTE: If this file is to be loaded
+ * during bootstrapping this function needs to be rewritten using some native
+ * functions as prototype setup using normal JavaScript does not work as
+ * expected during bootstrapping (see mirror.js in r114903).
+ *
+ * @param {function} ctor Constructor function which needs to inherit the
+ *     prototype.
+ * @param {function} superCtor Constructor function to inherit prototype from.
+ */
+exports.inherits = require('inherits');
+
+exports._extend = function(origin, add) {
+  // Don't do anything if add isn't an object
+  if (!add || !isObject(add)) return origin;
+
+  var keys = Object.keys(add);
+  var i = keys.length;
+  while (i--) {
+    origin[keys[i]] = add[keys[i]];
+  }
+  return origin;
+};
+
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+}).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./support/isBuffer":50,"_process":57,"inherits":49}],52:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+var objectCreate = Object.create || objectCreatePolyfill
+var objectKeys = Object.keys || objectKeysPolyfill
+var bind = Function.prototype.bind || functionBindPolyfill
+
+function EventEmitter() {
+  if (!this._events || !Object.prototype.hasOwnProperty.call(this, '_events')) {
+    this._events = objectCreate(null);
+    this._eventsCount = 0;
+  }
+
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+var defaultMaxListeners = 10;
+
+var hasDefineProperty;
+try {
+  var o = {};
+  if (Object.defineProperty) Object.defineProperty(o, 'x', { value: 0 });
+  hasDefineProperty = o.x === 0;
+} catch (err) { hasDefineProperty = false }
+if (hasDefineProperty) {
+  Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
+    enumerable: true,
+    get: function() {
+      return defaultMaxListeners;
+    },
+    set: function(arg) {
+      // check whether the input is a positive number (whose value is zero or
+      // greater and not a NaN).
+      if (typeof arg !== 'number' || arg < 0 || arg !== arg)
+        throw new TypeError('"defaultMaxListeners" must be a positive number');
+      defaultMaxListeners = arg;
+    }
+  });
+} else {
+  EventEmitter.defaultMaxListeners = defaultMaxListeners;
+}
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  if (typeof n !== 'number' || n < 0 || isNaN(n))
+    throw new TypeError('"n" argument must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+function $getMaxListeners(that) {
+  if (that._maxListeners === undefined)
+    return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
+
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return $getMaxListeners(this);
+};
+
+// These standalone emit* functions are used to optimize calling of event
+// handlers for fast cases because emit() itself often has a variable number of
+// arguments and can be deoptimized because of that. These functions always have
+// the same number of arguments and thus do not get deoptimized, so the code
+// inside them can execute faster.
+function emitNone(handler, isFn, self) {
+  if (isFn)
+    handler.call(self);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self);
+  }
+}
+function emitOne(handler, isFn, self, arg1) {
+  if (isFn)
+    handler.call(self, arg1);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1);
+  }
+}
+function emitTwo(handler, isFn, self, arg1, arg2) {
+  if (isFn)
+    handler.call(self, arg1, arg2);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1, arg2);
+  }
+}
+function emitThree(handler, isFn, self, arg1, arg2, arg3) {
+  if (isFn)
+    handler.call(self, arg1, arg2, arg3);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].call(self, arg1, arg2, arg3);
+  }
+}
+
+function emitMany(handler, isFn, self, args) {
+  if (isFn)
+    handler.apply(self, args);
+  else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+    for (var i = 0; i < len; ++i)
+      listeners[i].apply(self, args);
+  }
+}
+
+EventEmitter.prototype.emit = function emit(type) {
+  var er, handler, len, args, i, events;
+  var doError = (type === 'error');
+
+  events = this._events;
+  if (events)
+    doError = (doError && events.error == null);
+  else if (!doError)
+    return false;
+
+  // If there is no 'error' event listener then throw.
+  if (doError) {
+    if (arguments.length > 1)
+      er = arguments[1];
+    if (er instanceof Error) {
+      throw er; // Unhandled 'error' event
+    } else {
+      // At least give some kind of context to the user
+      var err = new Error('Unhandled "error" event. (' + er + ')');
+      err.context = er;
+      throw err;
+    }
+    return false;
+  }
+
+  handler = events[type];
+
+  if (!handler)
+    return false;
+
+  var isFn = typeof handler === 'function';
+  len = arguments.length;
+  switch (len) {
+      // fast cases
+    case 1:
+      emitNone(handler, isFn, this);
+      break;
+    case 2:
+      emitOne(handler, isFn, this, arguments[1]);
+      break;
+    case 3:
+      emitTwo(handler, isFn, this, arguments[1], arguments[2]);
+      break;
+    case 4:
+      emitThree(handler, isFn, this, arguments[1], arguments[2], arguments[3]);
+      break;
+      // slower
+    default:
+      args = new Array(len - 1);
+      for (i = 1; i < len; i++)
+        args[i - 1] = arguments[i];
+      emitMany(handler, isFn, this, args);
+  }
+
+  return true;
+};
+
+function _addListener(target, type, listener, prepend) {
+  var m;
+  var events;
+  var existing;
+
+  if (typeof listener !== 'function')
+    throw new TypeError('"listener" argument must be a function');
+
+  events = target._events;
+  if (!events) {
+    events = target._events = objectCreate(null);
+    target._eventsCount = 0;
+  } else {
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener) {
+      target.emit('newListener', type,
+          listener.listener ? listener.listener : listener);
+
+      // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+      events = target._events;
+    }
+    existing = events[type];
+  }
+
+  if (!existing) {
+    // Optimize the case of one listener. Don't need the extra array object.
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else {
+    if (typeof existing === 'function') {
+      // Adding the second element, need to change to array.
+      existing = events[type] =
+          prepend ? [listener, existing] : [existing, listener];
+    } else {
+      // If we've already got an array, just append.
+      if (prepend) {
+        existing.unshift(listener);
+      } else {
+        existing.push(listener);
+      }
+    }
+
+    // Check for listener leak
+    if (!existing.warned) {
+      m = $getMaxListeners(target);
+      if (m && m > 0 && existing.length > m) {
+        existing.warned = true;
+        var w = new Error('Possible EventEmitter memory leak detected. ' +
+            existing.length + ' "' + String(type) + '" listeners ' +
+            'added. Use emitter.setMaxListeners() to ' +
+            'increase limit.');
+        w.name = 'MaxListenersExceededWarning';
+        w.emitter = target;
+        w.type = type;
+        w.count = existing.length;
+        if (typeof console === 'object' && console.warn) {
+          console.warn('%s: %s', w.name, w.message);
+        }
+      }
+    }
+  }
+
+  return target;
+}
+
+EventEmitter.prototype.addListener = function addListener(type, listener) {
+  return _addListener(this, type, listener, false);
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.prependListener =
+    function prependListener(type, listener) {
+      return _addListener(this, type, listener, true);
+    };
+
+function onceWrapper() {
+  if (!this.fired) {
+    this.target.removeListener(this.type, this.wrapFn);
+    this.fired = true;
+    switch (arguments.length) {
+      case 0:
+        return this.listener.call(this.target);
+      case 1:
+        return this.listener.call(this.target, arguments[0]);
+      case 2:
+        return this.listener.call(this.target, arguments[0], arguments[1]);
+      case 3:
+        return this.listener.call(this.target, arguments[0], arguments[1],
+            arguments[2]);
+      default:
+        var args = new Array(arguments.length);
+        for (var i = 0; i < args.length; ++i)
+          args[i] = arguments[i];
+        this.listener.apply(this.target, args);
+    }
+  }
+}
+
+function _onceWrap(target, type, listener) {
+  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
+  var wrapped = bind.call(onceWrapper, state);
+  wrapped.listener = listener;
+  state.wrapFn = wrapped;
+  return wrapped;
+}
+
+EventEmitter.prototype.once = function once(type, listener) {
+  if (typeof listener !== 'function')
+    throw new TypeError('"listener" argument must be a function');
+  this.on(type, _onceWrap(this, type, listener));
+  return this;
+};
+
+EventEmitter.prototype.prependOnceListener =
+    function prependOnceListener(type, listener) {
+      if (typeof listener !== 'function')
+        throw new TypeError('"listener" argument must be a function');
+      this.prependListener(type, _onceWrap(this, type, listener));
+      return this;
+    };
+
+// Emits a 'removeListener' event if and only if the listener was removed.
+EventEmitter.prototype.removeListener =
+    function removeListener(type, listener) {
+      var list, events, position, i, originalListener;
+
+      if (typeof listener !== 'function')
+        throw new TypeError('"listener" argument must be a function');
+
+      events = this._events;
+      if (!events)
+        return this;
+
+      list = events[type];
+      if (!list)
+        return this;
+
+      if (list === listener || list.listener === listener) {
+        if (--this._eventsCount === 0)
+          this._events = objectCreate(null);
+        else {
+          delete events[type];
+          if (events.removeListener)
+            this.emit('removeListener', type, list.listener || listener);
+        }
+      } else if (typeof list !== 'function') {
+        position = -1;
+
+        for (i = list.length - 1; i >= 0; i--) {
+          if (list[i] === listener || list[i].listener === listener) {
+            originalListener = list[i].listener;
+            position = i;
+            break;
+          }
+        }
+
+        if (position < 0)
+          return this;
+
+        if (position === 0)
+          list.shift();
+        else
+          spliceOne(list, position);
+
+        if (list.length === 1)
+          events[type] = list[0];
+
+        if (events.removeListener)
+          this.emit('removeListener', type, originalListener || listener);
+      }
+
+      return this;
+    };
+
+EventEmitter.prototype.removeAllListeners =
+    function removeAllListeners(type) {
+      var listeners, events, i;
+
+      events = this._events;
+      if (!events)
+        return this;
+
+      // not listening for removeListener, no need to emit
+      if (!events.removeListener) {
+        if (arguments.length === 0) {
+          this._events = objectCreate(null);
+          this._eventsCount = 0;
+        } else if (events[type]) {
+          if (--this._eventsCount === 0)
+            this._events = objectCreate(null);
+          else
+            delete events[type];
+        }
+        return this;
+      }
+
+      // emit removeListener for all listeners on all events
+      if (arguments.length === 0) {
+        var keys = objectKeys(events);
+        var key;
+        for (i = 0; i < keys.length; ++i) {
+          key = keys[i];
+          if (key === 'removeListener') continue;
+          this.removeAllListeners(key);
+        }
+        this.removeAllListeners('removeListener');
+        this._events = objectCreate(null);
+        this._eventsCount = 0;
+        return this;
+      }
+
+      listeners = events[type];
+
+      if (typeof listeners === 'function') {
+        this.removeListener(type, listeners);
+      } else if (listeners) {
+        // LIFO order
+        for (i = listeners.length - 1; i >= 0; i--) {
+          this.removeListener(type, listeners[i]);
+        }
+      }
+
+      return this;
+    };
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+
+  if (!events)
+    return [];
+
+  var evlistener = events[type];
+  if (!evlistener)
+    return [];
+
+  if (typeof evlistener === 'function')
+    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+
+  return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
+};
+
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
+  }
+};
+
+EventEmitter.prototype.listenerCount = listenerCount;
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events) {
+    var evlistener = events[type];
+
+    if (typeof evlistener === 'function') {
+      return 1;
+    } else if (evlistener) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
+}
+
+EventEmitter.prototype.eventNames = function eventNames() {
+  return this._eventsCount > 0 ? Reflect.ownKeys(this._events) : [];
+};
+
+// About 1.5x faster than the two-arg version of Array#splice().
+function spliceOne(list, index) {
+  for (var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1)
+    list[i] = list[k];
+  list.pop();
+}
+
+function arrayClone(arr, n) {
+  var copy = new Array(n);
+  for (var i = 0; i < n; ++i)
+    copy[i] = arr[i];
+  return copy;
+}
+
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+  return ret;
+}
+
+function objectCreatePolyfill(proto) {
+  var F = function() {};
+  F.prototype = proto;
+  return new F;
+}
+function objectKeysPolyfill(obj) {
+  var keys = [];
+  for (var k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) {
+    keys.push(k);
+  }
+  return k;
+}
+function functionBindPolyfill(context) {
+  var fn = this;
+  return function () {
+    return fn.apply(context, arguments);
+  };
+}
+
+},{}],53:[function(require,module,exports){
+/*
+* loglevel - https://github.com/pimterry/loglevel
+*
+* Copyright (c) 2013 Tim Perry
+* Licensed under the MIT license.
+*/
+(function (root, definition) {
+    "use strict";
+    if (typeof define === 'function' && define.amd) {
+        define(definition);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = definition();
+    } else {
+        root.log = definition();
+    }
+}(this, function () {
+    "use strict";
+
+    // Slightly dubious tricks to cut down minimized file size
+    var noop = function() {};
+    var undefinedType = "undefined";
+    var isIE = (typeof window !== undefinedType) && (typeof window.navigator !== undefinedType) && (
+        /Trident\/|MSIE /.test(window.navigator.userAgent)
+    );
+
+    var logMethods = [
+        "trace",
+        "debug",
+        "info",
+        "warn",
+        "error"
+    ];
+
+    // Cross-browser bind equivalent that works at least back to IE6
+    function bindMethod(obj, methodName) {
+        var method = obj[methodName];
+        if (typeof method.bind === 'function') {
+            return method.bind(obj);
+        } else {
+            try {
+                return Function.prototype.bind.call(method, obj);
+            } catch (e) {
+                // Missing bind shim or IE8 + Modernizr, fallback to wrapping
+                return function() {
+                    return Function.prototype.apply.apply(method, [obj, arguments]);
+                };
+            }
+        }
+    }
+
+    // Trace() doesn't print the message in IE, so for that case we need to wrap it
+    function traceForIE() {
+        if (console.log) {
+            if (console.log.apply) {
+                console.log.apply(console, arguments);
+            } else {
+                // In old IE, native console methods themselves don't have apply().
+                Function.prototype.apply.apply(console.log, [console, arguments]);
+            }
+        }
+        if (console.trace) console.trace();
+    }
+
+    // Build the best logging method possible for this env
+    // Wherever possible we want to bind, not wrap, to preserve stack traces
+    function realMethod(methodName) {
+        if (methodName === 'debug') {
+            methodName = 'log';
+        }
+
+        if (typeof console === undefinedType) {
+            return false; // No method possible, for now - fixed later by enableLoggingWhenConsoleArrives
+        } else if (methodName === 'trace' && isIE) {
+            return traceForIE;
+        } else if (console[methodName] !== undefined) {
+            return bindMethod(console, methodName);
+        } else if (console.log !== undefined) {
+            return bindMethod(console, 'log');
+        } else {
+            return noop;
+        }
+    }
+
+    // These private functions always need `this` to be set properly
+
+    function replaceLoggingMethods(level, loggerName) {
+        /*jshint validthis:true */
+        for (var i = 0; i < logMethods.length; i++) {
+            var methodName = logMethods[i];
+            this[methodName] = (i < level) ?
+                noop :
+                this.methodFactory(methodName, level, loggerName);
+        }
+
+        // Define log.log as an alias for log.debug
+        this.log = this.debug;
+    }
+
+    // In old IE versions, the console isn't present until you first open it.
+    // We build realMethod() replacements here that regenerate logging methods
+    function enableLoggingWhenConsoleArrives(methodName, level, loggerName) {
+        return function () {
+            if (typeof console !== undefinedType) {
+                replaceLoggingMethods.call(this, level, loggerName);
+                this[methodName].apply(this, arguments);
+            }
+        };
+    }
+
+    // By default, we use closely bound real methods wherever possible, and
+    // otherwise we wait for a console to appear, and then try again.
+    function defaultMethodFactory(methodName, level, loggerName) {
+        /*jshint validthis:true */
+        return realMethod(methodName) ||
+               enableLoggingWhenConsoleArrives.apply(this, arguments);
+    }
+
+    function Logger(name, defaultLevel, factory) {
+      var self = this;
+      var currentLevel;
+      var storageKey = "loglevel";
+      if (name) {
+        storageKey += ":" + name;
+      }
+
+      function persistLevelIfPossible(levelNum) {
+          var levelName = (logMethods[levelNum] || 'silent').toUpperCase();
+
+          if (typeof window === undefinedType) return;
+
+          // Use localStorage if available
+          try {
+              window.localStorage[storageKey] = levelName;
+              return;
+          } catch (ignore) {}
+
+          // Use session cookie as fallback
+          try {
+              window.document.cookie =
+                encodeURIComponent(storageKey) + "=" + levelName + ";";
+          } catch (ignore) {}
+      }
+
+      function getPersistedLevel() {
+          var storedLevel;
+
+          if (typeof window === undefinedType) return;
+
+          try {
+              storedLevel = window.localStorage[storageKey];
+          } catch (ignore) {}
+
+          // Fallback to cookies if local storage gives us nothing
+          if (typeof storedLevel === undefinedType) {
+              try {
+                  var cookie = window.document.cookie;
+                  var location = cookie.indexOf(
+                      encodeURIComponent(storageKey) + "=");
+                  if (location !== -1) {
+                      storedLevel = /^([^;]+)/.exec(cookie.slice(location))[1];
+                  }
+              } catch (ignore) {}
+          }
+
+          // If the stored level is not valid, treat it as if nothing was stored.
+          if (self.levels[storedLevel] === undefined) {
+              storedLevel = undefined;
+          }
+
+          return storedLevel;
+      }
+
+      /*
+       *
+       * Public logger API - see https://github.com/pimterry/loglevel for details
+       *
+       */
+
+      self.name = name;
+
+      self.levels = { "TRACE": 0, "DEBUG": 1, "INFO": 2, "WARN": 3,
+          "ERROR": 4, "SILENT": 5};
+
+      self.methodFactory = factory || defaultMethodFactory;
+
+      self.getLevel = function () {
+          return currentLevel;
+      };
+
+      self.setLevel = function (level, persist) {
+          if (typeof level === "string" && self.levels[level.toUpperCase()] !== undefined) {
+              level = self.levels[level.toUpperCase()];
+          }
+          if (typeof level === "number" && level >= 0 && level <= self.levels.SILENT) {
+              currentLevel = level;
+              if (persist !== false) {  // defaults to true
+                  persistLevelIfPossible(level);
+              }
+              replaceLoggingMethods.call(self, level, name);
+              if (typeof console === undefinedType && level < self.levels.SILENT) {
+                  return "No console available for logging";
+              }
+          } else {
+              throw "log.setLevel() called with invalid level: " + level;
+          }
+      };
+
+      self.setDefaultLevel = function (level) {
+          if (!getPersistedLevel()) {
+              self.setLevel(level, false);
+          }
+      };
+
+      self.enableAll = function(persist) {
+          self.setLevel(self.levels.TRACE, persist);
+      };
+
+      self.disableAll = function(persist) {
+          self.setLevel(self.levels.SILENT, persist);
+      };
+
+      // Initialize with the right level
+      var initialLevel = getPersistedLevel();
+      if (initialLevel == null) {
+          initialLevel = defaultLevel == null ? "WARN" : defaultLevel;
+      }
+      self.setLevel(initialLevel, false);
+    }
+
+    /*
+     *
+     * Top-level API
+     *
+     */
+
+    var defaultLogger = new Logger();
+
+    var _loggersByName = {};
+    defaultLogger.getLogger = function getLogger(name) {
+        if (typeof name !== "string" || name === "") {
+          throw new TypeError("You must supply a name when creating a logger.");
+        }
+
+        var logger = _loggersByName[name];
+        if (!logger) {
+          logger = _loggersByName[name] = new Logger(
+            name, defaultLogger.getLevel(), defaultLogger.methodFactory);
+        }
+        return logger;
+    };
+
+    // Grab the current global log variable in case of overwrite
+    var _log = (typeof window !== undefinedType) ? window.log : undefined;
+    defaultLogger.noConflict = function() {
+        if (typeof window !== undefinedType &&
+               window.log === defaultLogger) {
+            window.log = _log;
+        }
+
+        return defaultLogger;
+    };
+
+    defaultLogger.getLoggers = function getLoggers() {
+        return _loggersByName;
+    };
+
+    return defaultLogger;
+}));
+
+},{}],54:[function(require,module,exports){
+/*
+ * Copyright (c) 2012 Mathieu Turcotte
+ * Licensed under the MIT license.
+ */
+
+module.exports = require('./lib/checks');
+},{"./lib/checks":55}],55:[function(require,module,exports){
+/*
+ * Copyright (c) 2012 Mathieu Turcotte
+ * Licensed under the MIT license.
+ */
+
+var util = require('util');
+
+var errors = module.exports = require('./errors');
+
+function failCheck(ExceptionConstructor, callee, messageFormat, formatArgs) {
+    messageFormat = messageFormat || '';
+    var message = util.format.apply(this, [messageFormat].concat(formatArgs));
+    var error = new ExceptionConstructor(message);
+    Error.captureStackTrace(error, callee);
+    throw error;
+}
+
+function failArgumentCheck(callee, message, formatArgs) {
+    failCheck(errors.IllegalArgumentError, callee, message, formatArgs);
+}
+
+function failStateCheck(callee, message, formatArgs) {
+    failCheck(errors.IllegalStateError, callee, message, formatArgs);
+}
+
+module.exports.checkArgument = function(value, message) {
+    if (!value) {
+        failArgumentCheck(arguments.callee, message,
+            Array.prototype.slice.call(arguments, 2));
+    }
+};
+
+module.exports.checkState = function(value, message) {
+    if (!value) {
+        failStateCheck(arguments.callee, message,
+            Array.prototype.slice.call(arguments, 2));
+    }
+};
+
+module.exports.checkIsDef = function(value, message) {
+    if (value !== undefined) {
+        return value;
+    }
+
+    failArgumentCheck(arguments.callee, message ||
+        'Expected value to be defined but was undefined.',
+        Array.prototype.slice.call(arguments, 2));
+};
+
+module.exports.checkIsDefAndNotNull = function(value, message) {
+    // Note that undefined == null.
+    if (value != null) {
+        return value;
+    }
+
+    failArgumentCheck(arguments.callee, message ||
+        'Expected value to be defined and not null but got "' +
+        typeOf(value) + '".', Array.prototype.slice.call(arguments, 2));
+};
+
+// Fixed version of the typeOf operator which returns 'null' for null values
+// and 'array' for arrays.
+function typeOf(value) {
+    var s = typeof value;
+    if (s == 'object') {
+        if (!value) {
+            return 'null';
+        } else if (value instanceof Array) {
+            return 'array';
+        }
+    }
+    return s;
+}
+
+function typeCheck(expect) {
+    return function(value, message) {
+        var type = typeOf(value);
+
+        if (type == expect) {
+            return value;
+        }
+
+        failArgumentCheck(arguments.callee, message ||
+            'Expected "' + expect + '" but got "' + type + '".',
+            Array.prototype.slice.call(arguments, 2));
+    };
+}
+
+module.exports.checkIsString = typeCheck('string');
+module.exports.checkIsArray = typeCheck('array');
+module.exports.checkIsNumber = typeCheck('number');
+module.exports.checkIsBoolean = typeCheck('boolean');
+module.exports.checkIsFunction = typeCheck('function');
+module.exports.checkIsObject = typeCheck('object');
+
+},{"./errors":56,"util":51}],56:[function(require,module,exports){
+/*
+ * Copyright (c) 2012 Mathieu Turcotte
+ * Licensed under the MIT license.
+ */
+
+var util = require('util');
+
+function IllegalArgumentError(message) {
+    Error.call(this, message);
+    this.message = message;
+}
+util.inherits(IllegalArgumentError, Error);
+
+IllegalArgumentError.prototype.name = 'IllegalArgumentError';
+
+function IllegalStateError(message) {
+    Error.call(this, message);
+    this.message = message;
+}
+util.inherits(IllegalStateError, Error);
+
+IllegalStateError.prototype.name = 'IllegalStateError';
+
+module.exports.IllegalStateError = IllegalStateError;
+module.exports.IllegalArgumentError = IllegalArgumentError;
+},{"util":51}],57:[function(require,module,exports){
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+},{}],58:[function(require,module,exports){
 /*
  *  Copyright (c) 2017 The WebRTC project authors. All Rights Reserved.
  *
@@ -13846,7 +14470,7 @@ module.exports = function(window, edgeVersion) {
   return RTCPeerConnection;
 };
 
-},{"sdp":56}],56:[function(require,module,exports){
+},{"sdp":59}],59:[function(require,module,exports){
 /* eslint-env node */
 'use strict';
 
@@ -14673,629 +15297,7 @@ if (typeof module === 'object') {
   module.exports = SDPUtils;
 }
 
-},{}],57:[function(require,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-},{}],58:[function(require,module,exports){
-module.exports = function isBuffer(arg) {
-  return arg && typeof arg === 'object'
-    && typeof arg.copy === 'function'
-    && typeof arg.fill === 'function'
-    && typeof arg.readUInt8 === 'function';
-}
-},{}],59:[function(require,module,exports){
-(function (process,global){(function (){
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-var formatRegExp = /%[sdj%]/g;
-exports.format = function(f) {
-  if (!isString(f)) {
-    var objects = [];
-    for (var i = 0; i < arguments.length; i++) {
-      objects.push(inspect(arguments[i]));
-    }
-    return objects.join(' ');
-  }
-
-  var i = 1;
-  var args = arguments;
-  var len = args.length;
-  var str = String(f).replace(formatRegExp, function(x) {
-    if (x === '%%') return '%';
-    if (i >= len) return x;
-    switch (x) {
-      case '%s': return String(args[i++]);
-      case '%d': return Number(args[i++]);
-      case '%j':
-        try {
-          return JSON.stringify(args[i++]);
-        } catch (_) {
-          return '[Circular]';
-        }
-      default:
-        return x;
-    }
-  });
-  for (var x = args[i]; i < len; x = args[++i]) {
-    if (isNull(x) || !isObject(x)) {
-      str += ' ' + x;
-    } else {
-      str += ' ' + inspect(x);
-    }
-  }
-  return str;
-};
-
-
-// Mark that a method should not be used.
-// Returns a modified function which warns once by default.
-// If --no-deprecation is set, then it is a no-op.
-exports.deprecate = function(fn, msg) {
-  // Allow for deprecating things in the process of starting up.
-  if (isUndefined(global.process)) {
-    return function() {
-      return exports.deprecate(fn, msg).apply(this, arguments);
-    };
-  }
-
-  if (process.noDeprecation === true) {
-    return fn;
-  }
-
-  var warned = false;
-  function deprecated() {
-    if (!warned) {
-      if (process.throwDeprecation) {
-        throw new Error(msg);
-      } else if (process.traceDeprecation) {
-        console.trace(msg);
-      } else {
-        console.error(msg);
-      }
-      warned = true;
-    }
-    return fn.apply(this, arguments);
-  }
-
-  return deprecated;
-};
-
-
-var debugs = {};
-var debugEnviron;
-exports.debuglog = function(set) {
-  if (isUndefined(debugEnviron))
-    debugEnviron = process.env.NODE_DEBUG || '';
-  set = set.toUpperCase();
-  if (!debugs[set]) {
-    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
-      var pid = process.pid;
-      debugs[set] = function() {
-        var msg = exports.format.apply(exports, arguments);
-        console.error('%s %d: %s', set, pid, msg);
-      };
-    } else {
-      debugs[set] = function() {};
-    }
-  }
-  return debugs[set];
-};
-
-
-/**
- * Echos the value of a value. Trys to print the value out
- * in the best way possible given the different types.
- *
- * @param {Object} obj The object to print out.
- * @param {Object} opts Optional options object that alters the output.
- */
-/* legacy: obj, showHidden, depth, colors*/
-function inspect(obj, opts) {
-  // default options
-  var ctx = {
-    seen: [],
-    stylize: stylizeNoColor
-  };
-  // legacy...
-  if (arguments.length >= 3) ctx.depth = arguments[2];
-  if (arguments.length >= 4) ctx.colors = arguments[3];
-  if (isBoolean(opts)) {
-    // legacy...
-    ctx.showHidden = opts;
-  } else if (opts) {
-    // got an "options" object
-    exports._extend(ctx, opts);
-  }
-  // set default options
-  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
-  if (isUndefined(ctx.depth)) ctx.depth = 2;
-  if (isUndefined(ctx.colors)) ctx.colors = false;
-  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
-  if (ctx.colors) ctx.stylize = stylizeWithColor;
-  return formatValue(ctx, obj, ctx.depth);
-}
-exports.inspect = inspect;
-
-
-// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
-inspect.colors = {
-  'bold' : [1, 22],
-  'italic' : [3, 23],
-  'underline' : [4, 24],
-  'inverse' : [7, 27],
-  'white' : [37, 39],
-  'grey' : [90, 39],
-  'black' : [30, 39],
-  'blue' : [34, 39],
-  'cyan' : [36, 39],
-  'green' : [32, 39],
-  'magenta' : [35, 39],
-  'red' : [31, 39],
-  'yellow' : [33, 39]
-};
-
-// Don't use 'blue' not visible on cmd.exe
-inspect.styles = {
-  'special': 'cyan',
-  'number': 'yellow',
-  'boolean': 'yellow',
-  'undefined': 'grey',
-  'null': 'bold',
-  'string': 'green',
-  'date': 'magenta',
-  // "name": intentionally not styling
-  'regexp': 'red'
-};
-
-
-function stylizeWithColor(str, styleType) {
-  var style = inspect.styles[styleType];
-
-  if (style) {
-    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
-           '\u001b[' + inspect.colors[style][1] + 'm';
-  } else {
-    return str;
-  }
-}
-
-
-function stylizeNoColor(str, styleType) {
-  return str;
-}
-
-
-function arrayToHash(array) {
-  var hash = {};
-
-  array.forEach(function(val, idx) {
-    hash[val] = true;
-  });
-
-  return hash;
-}
-
-
-function formatValue(ctx, value, recurseTimes) {
-  // Provide a hook for user-specified inspect functions.
-  // Check that value is an object with an inspect function on it
-  if (ctx.customInspect &&
-      value &&
-      isFunction(value.inspect) &&
-      // Filter out the util module, it's inspect function is special
-      value.inspect !== exports.inspect &&
-      // Also filter out any prototype objects using the circular check.
-      !(value.constructor && value.constructor.prototype === value)) {
-    var ret = value.inspect(recurseTimes, ctx);
-    if (!isString(ret)) {
-      ret = formatValue(ctx, ret, recurseTimes);
-    }
-    return ret;
-  }
-
-  // Primitive types cannot have properties
-  var primitive = formatPrimitive(ctx, value);
-  if (primitive) {
-    return primitive;
-  }
-
-  // Look up the keys of the object.
-  var keys = Object.keys(value);
-  var visibleKeys = arrayToHash(keys);
-
-  if (ctx.showHidden) {
-    keys = Object.getOwnPropertyNames(value);
-  }
-
-  // IE doesn't make error fields non-enumerable
-  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
-  if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
-    return formatError(value);
-  }
-
-  // Some type of object without properties can be shortcutted.
-  if (keys.length === 0) {
-    if (isFunction(value)) {
-      var name = value.name ? ': ' + value.name : '';
-      return ctx.stylize('[Function' + name + ']', 'special');
-    }
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    }
-    if (isDate(value)) {
-      return ctx.stylize(Date.prototype.toString.call(value), 'date');
-    }
-    if (isError(value)) {
-      return formatError(value);
-    }
-  }
-
-  var base = '', array = false, braces = ['{', '}'];
-
-  // Make Array say that they are Array
-  if (isArray(value)) {
-    array = true;
-    braces = ['[', ']'];
-  }
-
-  // Make functions say that they are functions
-  if (isFunction(value)) {
-    var n = value.name ? ': ' + value.name : '';
-    base = ' [Function' + n + ']';
-  }
-
-  // Make RegExps say that they are RegExps
-  if (isRegExp(value)) {
-    base = ' ' + RegExp.prototype.toString.call(value);
-  }
-
-  // Make dates with properties first say the date
-  if (isDate(value)) {
-    base = ' ' + Date.prototype.toUTCString.call(value);
-  }
-
-  // Make error with message first say the error
-  if (isError(value)) {
-    base = ' ' + formatError(value);
-  }
-
-  if (keys.length === 0 && (!array || value.length == 0)) {
-    return braces[0] + base + braces[1];
-  }
-
-  if (recurseTimes < 0) {
-    if (isRegExp(value)) {
-      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-    } else {
-      return ctx.stylize('[Object]', 'special');
-    }
-  }
-
-  ctx.seen.push(value);
-
-  var output;
-  if (array) {
-    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
-  } else {
-    output = keys.map(function(key) {
-      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
-    });
-  }
-
-  ctx.seen.pop();
-
-  return reduceToSingleString(output, base, braces);
-}
-
-
-function formatPrimitive(ctx, value) {
-  if (isUndefined(value))
-    return ctx.stylize('undefined', 'undefined');
-  if (isString(value)) {
-    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
-                                             .replace(/'/g, "\\'")
-                                             .replace(/\\"/g, '"') + '\'';
-    return ctx.stylize(simple, 'string');
-  }
-  if (isNumber(value))
-    return ctx.stylize('' + value, 'number');
-  if (isBoolean(value))
-    return ctx.stylize('' + value, 'boolean');
-  // For some reason typeof null is "object", so special case here.
-  if (isNull(value))
-    return ctx.stylize('null', 'null');
-}
-
-
-function formatError(value) {
-  return '[' + Error.prototype.toString.call(value) + ']';
-}
-
-
-function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
-  var output = [];
-  for (var i = 0, l = value.length; i < l; ++i) {
-    if (hasOwnProperty(value, String(i))) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          String(i), true));
-    } else {
-      output.push('');
-    }
-  }
-  keys.forEach(function(key) {
-    if (!key.match(/^\d+$/)) {
-      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
-          key, true));
-    }
-  });
-  return output;
-}
-
-
-function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
-  var name, str, desc;
-  desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
-  if (desc.get) {
-    if (desc.set) {
-      str = ctx.stylize('[Getter/Setter]', 'special');
-    } else {
-      str = ctx.stylize('[Getter]', 'special');
-    }
-  } else {
-    if (desc.set) {
-      str = ctx.stylize('[Setter]', 'special');
-    }
-  }
-  if (!hasOwnProperty(visibleKeys, key)) {
-    name = '[' + key + ']';
-  }
-  if (!str) {
-    if (ctx.seen.indexOf(desc.value) < 0) {
-      if (isNull(recurseTimes)) {
-        str = formatValue(ctx, desc.value, null);
-      } else {
-        str = formatValue(ctx, desc.value, recurseTimes - 1);
-      }
-      if (str.indexOf('\n') > -1) {
-        if (array) {
-          str = str.split('\n').map(function(line) {
-            return '  ' + line;
-          }).join('\n').substr(2);
-        } else {
-          str = '\n' + str.split('\n').map(function(line) {
-            return '   ' + line;
-          }).join('\n');
-        }
-      }
-    } else {
-      str = ctx.stylize('[Circular]', 'special');
-    }
-  }
-  if (isUndefined(name)) {
-    if (array && key.match(/^\d+$/)) {
-      return str;
-    }
-    name = JSON.stringify('' + key);
-    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
-      name = name.substr(1, name.length - 2);
-      name = ctx.stylize(name, 'name');
-    } else {
-      name = name.replace(/'/g, "\\'")
-                 .replace(/\\"/g, '"')
-                 .replace(/(^"|"$)/g, "'");
-      name = ctx.stylize(name, 'string');
-    }
-  }
-
-  return name + ': ' + str;
-}
-
-
-function reduceToSingleString(output, base, braces) {
-  var numLinesEst = 0;
-  var length = output.reduce(function(prev, cur) {
-    numLinesEst++;
-    if (cur.indexOf('\n') >= 0) numLinesEst++;
-    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
-  }, 0);
-
-  if (length > 60) {
-    return braces[0] +
-           (base === '' ? '' : base + '\n ') +
-           ' ' +
-           output.join(',\n  ') +
-           ' ' +
-           braces[1];
-  }
-
-  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
-}
-
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-function isArray(ar) {
-  return Array.isArray(ar);
-}
-exports.isArray = isArray;
-
-function isBoolean(arg) {
-  return typeof arg === 'boolean';
-}
-exports.isBoolean = isBoolean;
-
-function isNull(arg) {
-  return arg === null;
-}
-exports.isNull = isNull;
-
-function isNullOrUndefined(arg) {
-  return arg == null;
-}
-exports.isNullOrUndefined = isNullOrUndefined;
-
-function isNumber(arg) {
-  return typeof arg === 'number';
-}
-exports.isNumber = isNumber;
-
-function isString(arg) {
-  return typeof arg === 'string';
-}
-exports.isString = isString;
-
-function isSymbol(arg) {
-  return typeof arg === 'symbol';
-}
-exports.isSymbol = isSymbol;
-
-function isUndefined(arg) {
-  return arg === void 0;
-}
-exports.isUndefined = isUndefined;
-
-function isRegExp(re) {
-  return isObject(re) && objectToString(re) === '[object RegExp]';
-}
-exports.isRegExp = isRegExp;
-
-function isObject(arg) {
-  return typeof arg === 'object' && arg !== null;
-}
-exports.isObject = isObject;
-
-function isDate(d) {
-  return isObject(d) && objectToString(d) === '[object Date]';
-}
-exports.isDate = isDate;
-
-function isError(e) {
-  return isObject(e) &&
-      (objectToString(e) === '[object Error]' || e instanceof Error);
-}
-exports.isError = isError;
-
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-exports.isFunction = isFunction;
-
-function isPrimitive(arg) {
-  return arg === null ||
-         typeof arg === 'boolean' ||
-         typeof arg === 'number' ||
-         typeof arg === 'string' ||
-         typeof arg === 'symbol' ||  // ES6 symbol
-         typeof arg === 'undefined';
-}
-exports.isPrimitive = isPrimitive;
-
-exports.isBuffer = require('./support/isBuffer');
-
-function objectToString(o) {
-  return Object.prototype.toString.call(o);
-}
-
-
-function pad(n) {
-  return n < 10 ? '0' + n.toString(10) : n.toString(10);
-}
-
-
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-              'Oct', 'Nov', 'Dec'];
-
-// 26 Feb 16:19:34
-function timestamp() {
-  var d = new Date();
-  var time = [pad(d.getHours()),
-              pad(d.getMinutes()),
-              pad(d.getSeconds())].join(':');
-  return [d.getDate(), months[d.getMonth()], time].join(' ');
-}
-
-
-// log is just a thin wrapper to console.log that prepends a timestamp
-exports.log = function() {
-  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
-};
-
-
-/**
- * Inherit the prototype methods from one constructor into another.
- *
- * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
- * during bootstrapping this function needs to be rewritten using some native
- * functions as prototype setup using normal JavaScript does not work as
- * expected during bootstrapping (see mirror.js in r114903).
- *
- * @param {function} ctor Constructor function which needs to inherit the
- *     prototype.
- * @param {function} superCtor Constructor function to inherit prototype from.
- */
-exports.inherits = require('inherits');
-
-exports._extend = function(origin, add) {
-  // Don't do anything if add isn't an object
-  if (!add || !isObject(add)) return origin;
-
-  var keys = Object.keys(add);
-  var i = keys.length;
-  while (i--) {
-    origin[keys[i]] = add[keys[i]];
-  }
-  return origin;
-};
-
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-}).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":58,"_process":52,"inherits":57}]},{},[3]);
+},{}]},{},[3]);
 ;
   var Voice = bundle(3);
   /* globals define */

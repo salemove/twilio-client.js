@@ -652,7 +652,9 @@ PeerConnection.prototype._setupPeerConnection = function (rtcConstraints, rtcCon
     if (self._isSinkSupported) {
       self._onAddTrack(self, stream);
     } else {
-      self._fallbackOnAddTrack(self, stream);
+      setTimeout(function () {
+        self._fallbackOnAddTrack(self, stream);
+      }, 1000);
     }
 
     self._startPollingVolume();
