@@ -2235,6 +2235,8 @@ describe('PeerConnection', () => {
         _onAddTrack: sinon.stub(),
         _fallbackOnAddTrack: sinon.stub(),
         _startPollingVolume: sinon.stub(),
+        _isiOS: sinon.stub(),
+        _iOSVersion: sinon.stub()
       };
       toTest = METHOD.bind(context, CONSTRAINTS, ICE_SERVERS);
     });
@@ -2286,10 +2288,36 @@ describe('PeerConnection', () => {
       versionPc.onaddstream({stream: STREAM});
       assert.equal(typeof versionPc.onaddstream, 'function');
       assert.equal(context._remoteStream, STREAM);
+
       assert(context._fallbackOnAddTrack.calledWithExactly(context, STREAM));
       assert(context._fallbackOnAddTrack.calledOn(context));
       assert.equal(context._onAddTrack.called, false);
       assert(context._startPollingVolume.calledWithExactly());
+    });
+
+
+    describe('when iOS 15.4+', () => {
+      beforeEach(() => {
+        clock = sinon.useFakeTimers();
+      });
+
+      afterEach(() => {
+        clock.restore();
+      });
+
+      it('Should call _fallbackOnAddTrack after 400 ms', () => {
+        context._isiOS.returns(true);
+        context._iOSVersion.returns(15.4);
+        context._isSinkSupported = false;
+        const event = {stream: STREAM};
+        assert.deepStrictEqual(toTest(), new rtcpcFactory());
+        versionPc.onaddstream({stream: STREAM});
+        assert.equal(context._fallbackOnAddTrack.called, false);
+
+        clock.tick(601);
+        assert(context._fallbackOnAddTrack.calledWithExactly(context, STREAM));
+        assert(context._fallbackOnAddTrack.calledOn(context));
+      });
     });
 
     describe('after creating audio outputs', () => {
